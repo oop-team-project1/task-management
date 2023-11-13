@@ -1,4 +1,4 @@
 package taskmanagement.models.tasks;
 
-public class Task {
+public class TaskImpl {
 }
