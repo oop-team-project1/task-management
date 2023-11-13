@@ -1,4 +1,8 @@
 package taskmanagement.commands.contracts;
 
-public interface Command {
+import java.util.List;
+
+public interface Command
+{
+    String execute(List<String> parameters);
 }

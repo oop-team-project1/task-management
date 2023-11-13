@@ -1,4 +1,4 @@
 package taskmanagement.models;
 
-public class TeamFields {
+public class MemberImpl {
 }

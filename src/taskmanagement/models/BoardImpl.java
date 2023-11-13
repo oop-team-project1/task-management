@@ -1,6 +1,6 @@
 package taskmanagement.models;
 
-public class Board {
+public class BoardImpl {
 
     private String test = "test commit";
 }
