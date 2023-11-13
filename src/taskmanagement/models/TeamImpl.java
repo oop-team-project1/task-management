@@ -1,4 +1,4 @@
 package taskmanagement.models;
 
-public class Team {
+public class TeamImpl {
 }

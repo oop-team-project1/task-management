@@ -1,4 +1,9 @@
 package taskmanagement.models.tasks.contracts;
 
-public interface Feedback {
+import taskmanagement.models.tasks.feedback.Status;
+
+public interface Feedback extends Task{
+    public int getRating();
+    public Status getStatus();
+
 }
