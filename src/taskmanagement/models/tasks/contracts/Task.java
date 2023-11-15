@@ -1,12 +1,13 @@
 package taskmanagement.models.tasks.contracts;
 
+import taskmanagement.models.comment.Comment;
 import taskmanagement.models.contracts.Assignable;
 import taskmanagement.models.contracts.Commentable;
 import taskmanagement.models.contracts.Identifiable;
 
 import java.util.List;
 
-public interface Task extends Identifiable, Commentable , Assignable{
+public interface Task extends Identifiable, Commentable{
     public String getTitle();
 
     public String getDescription();
@@ -19,5 +20,8 @@ public interface Task extends Identifiable, Commentable , Assignable{
 
     public void revertStatus();
 
+    public void addComment(Comment comment);
+
+    public void removeComment(Comment comment);
 
 }

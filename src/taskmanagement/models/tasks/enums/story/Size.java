@@ -1,4 +1,4 @@
-package taskmanagement.models.tasks.story;
+package taskmanagement.models.tasks.enums.story;
 
 public enum Size {
    LARGE,

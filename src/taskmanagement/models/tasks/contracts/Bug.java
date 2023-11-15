@@ -1,14 +1,13 @@
 package taskmanagement.models.tasks.contracts;
 
 import taskmanagement.models.contracts.Assignable;
-import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.bug.Status;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 
-public interface Bug {
+public interface Bug extends Assignable, Prioritizable {
 
-    //TODO We want the Member not the String name of the assignee, right?
+    //TODO We want the Member obj not the String name of the assignee, right?
 
-    public Status getStatus();
+    public BugStatus getStatus();
 
 
 }
