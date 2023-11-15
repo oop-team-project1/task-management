@@ -11,5 +11,6 @@ public interface Member {
     List<String> getActivityHistory();
     void addTask(Task task);
     String viewActivity();
+    String print();
 
 }

@@ -2,13 +2,14 @@ package taskmanagement.core;
 
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.CommandFactory;
+import taskmanagement.core.contracts.Engine;
 import taskmanagement.core.contracts.TaskManagementRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class TaskManagementEngineImpl
+public class TaskManagementEngineImpl implements Engine
 {
     private static final String TERMINATION_COMMAND = "Exit";
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
@@ -22,6 +23,7 @@ public class TaskManagementEngineImpl
         taskManagementRepository = new TaskManagementRepositoryImpl();
     }
 
+    @Override
     public void start()
     {
         Scanner scanner = new Scanner(System.in);
