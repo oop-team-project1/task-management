@@ -24,6 +24,8 @@ public interface TaskManagementRepository
     Member findMemberByName(String personName);
     Team findTeamByName(String teamName);
 
+    Board findBoardByName(String boardName);
+
     Team createNewTeam(String name);
     Board createNewBoard(String name);
 

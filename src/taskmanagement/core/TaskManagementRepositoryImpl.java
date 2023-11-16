@@ -56,6 +56,11 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
+    public Board findBoardByName(String boardName) {
+        return this.findElementByName(getBoards(), boardName);
+    }
+
+    @Override
     public List<Board> getBoards() {
         return new ArrayList<>(boards);
     }

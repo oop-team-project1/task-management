@@ -36,6 +36,11 @@ public class TeamImpl implements Team
         this.name = name;
     }
 
+    //add board to team
+    public void addBoard(Board board) {
+        boards.add(board);
+    }
+
     @Override
     public String getName() {
         return name;
