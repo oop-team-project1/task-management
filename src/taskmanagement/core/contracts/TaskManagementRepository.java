@@ -36,6 +36,10 @@ public interface TaskManagementRepository
     Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
     Feedback createNewFeedback(String title, String description, int rating);
 
+    void addTeam(Team teamToAdd);
+    void addMember(Member member);
+    void addMemberToTeam(Member memberToAdd, Team team);
+    void removeMemberFromTeam(Member memberToRemove, Team team);
 
 
 }

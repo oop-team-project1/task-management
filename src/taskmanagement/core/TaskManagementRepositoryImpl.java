@@ -23,6 +23,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public static final String MEMBER_DOES_NOT_EXIST = "Member %s does not exist!";
     public static final String ELEMENT_NOT_FOUND_ERR = "No record with name %s";
     public static final String ELEMENT_WITH_ID_NOT_FOUND_ERR = "No record with id %d";
+    public static final String TEAM_EXISTS_ERR = "Team %s already exists!";
+    public static final String MEMBER_EXISTS = "The member %s you are trying to add already exists!";
     private List<Team> teams;
     private List<Member> members;
     private List<Board> boards;
@@ -135,6 +137,31 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     @Override
     public Feedback createNewFeedback(String title, String description, int rating) {
         return null;
+    }
+
+    @Override
+    public void addTeam(Team team) {
+        if (teams.contains(team)) throw new IllegalArgumentException(String.format(TEAM_EXISTS_ERR,team.getName()));
+        teams.add(team);
+    }
+
+    @Override
+    public void addMember(Member member) {
+        if (members.contains(member)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, member.getName()));
+        members.add(member);
+
+    }
+
+    @Override
+    public void addMemberToTeam(Member memberToAdd, Team team) {
+        if(!teams.contains(team)) throw new IllegalArgumentException("Team does not exist!");
+        team.addMember(memberToAdd);
+    }
+
+    @Override
+    public void removeMemberFromTeam(Member memberToRemove, Team team) {
+        if(!teams.contains(team)) throw new IllegalArgumentException("Team does not exist!");
+        team.removeMember(memberToRemove);
     }
 
     private <T extends IdentifiableByName> T findElementByName(List<T> elements, String name) {
