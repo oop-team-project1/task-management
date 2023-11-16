@@ -5,8 +5,7 @@ import taskmanagement.models.tasks.contracts.Task;
 
 import java.util.List;
 
-public interface Board extends Printable {
-    String getName();
+public interface Board extends Printable, IdentifiableByName {
 
     List<Task> getTask();
     List<String> getActivityHistory();
