@@ -3,29 +3,28 @@ package taskmanagement.commands.listing;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.contracts.Member;
+import taskmanagement.utils.ListingHelpers;
 
 import java.util.List;
 
 public class ShowAllPeople implements Command
 {
-    private TaskManagementRepository taskManagementRepository;
+    private static final String MEMBER_ERROR_MESSAGE = "There are no registered members!";
+    private final List<Member> members;
 
     public ShowAllPeople(TaskManagementRepository taskManagementRepository)
     {
-        this.taskManagementRepository = taskManagementRepository;
+        members = taskManagementRepository.getMembers();
     }
 
     @Override
     public String execute(List<String> parameters)
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        List<Member> members = taskManagementRepository.getMembers();
-
-        for (int i = 0; i < members.size(); i++)
+        if (members.isEmpty())
         {
-            stringBuilder.append(members.get(i).print());
+            return MEMBER_ERROR_MESSAGE;
         }
 
-        return stringBuilder.toString().trim();
+        return ListingHelpers.elementsToString(members);
     }
 }

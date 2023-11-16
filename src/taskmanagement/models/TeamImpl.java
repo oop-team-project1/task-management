@@ -50,4 +50,11 @@ public class TeamImpl implements Team
     public List<Board> getBoards() {
         return new ArrayList<>(boards);
     }
+
+    @Override
+    public String print() {
+        StringBuilder result = new StringBuilder();
+        result.append(getName()).append(System.lineSeparator());
+        return result.toString();
+    }
 }

@@ -111,7 +111,7 @@ public abstract class TaskImpl<T extends GenericStatus<T>> implements Task {
 
     @Override
     public void addComment(Comment comment){
-        comments.add(new CommentImpl());
+        comments.add(comment);
     }
 
     @Override

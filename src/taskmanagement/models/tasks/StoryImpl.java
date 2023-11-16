@@ -10,14 +10,19 @@ import taskmanagement.models.tasks.enums.story.StoryStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 
 public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s. " +
                                                      "If you still wish to change it, " +
                                                      "please provide a valid value.";
+
+    public static final String SIZE_CHANGE_ERR = "Size already set to %s. " +
+                                                "If you still wish to change it, " +
+                                                "please provide a valid value.";
     private Priority priority;
-    private final Size size;
+    private Size size;
     private StoryStatus status;
     private Member assignee;
 
@@ -83,5 +88,23 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
         this.priority = newPriority;
     }
 
+    @Override
+    public void changeSize(Size newSize) {
+        if (this.size == newSize) {
+            throw new IllegalArgumentException(
+                    String.format(PRIORITY_CHANGE_ERR, priority));
+        }
+        logEvent(String.format("Size changed from %s to %s", this.size, newSize));
+        this.size = newSize;
+    }
 
+    @Override
+    public void changeStatus(StoryStatus newStatus) {
+        if (this.status == newStatus) {
+            throw new IllegalArgumentException(
+                    String.format(PRIORITY_CHANGE_ERR, priority));
+        }
+        logEvent(String.format("Size changed from %s to %s", this.status, newStatus));
+        this.status = newStatus;
+    }
 }
