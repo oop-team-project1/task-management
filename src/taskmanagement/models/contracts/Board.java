@@ -1,10 +1,11 @@
 package taskmanagement.models.contracts;
 
+import taskmanagement.models.tasks.contracts.Printable;
 import taskmanagement.models.tasks.contracts.Task;
 
 import java.util.List;
 
-public interface Board {
+public interface Board extends Printable {
     String getName();
 
     List<Task> getTask();

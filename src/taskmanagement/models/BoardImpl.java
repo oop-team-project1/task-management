@@ -66,4 +66,11 @@ public class BoardImpl implements Board {
 
         return result.toString();
     }
+
+    @Override
+    public String print() {
+        StringBuilder result = new StringBuilder();
+        result.append(getName()).append(System.lineSeparator());
+        return result.toString();
+    }
 }

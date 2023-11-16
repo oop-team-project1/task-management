@@ -16,6 +16,7 @@ import java.util.List;
 
 public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
+    public static final String MEMBER_DOES_NOT_EXIST = "Member %s does not exist!";
     private List<Team> teams;
 
     private List<Member> members;
@@ -39,6 +40,17 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     @Override
     public List<Member> getMembers() {
         return null;
+    }
+
+    @Override
+    public Member findMemberByName(String personName) {
+        for(Member member : getMembers()) {
+            if(member.getName().equalsIgnoreCase(personName)) {
+                return member;
+            }
+        }
+
+        throw new IllegalArgumentException(String.format(MEMBER_DOES_NOT_EXIST, personName));
     }
 
     @Override
