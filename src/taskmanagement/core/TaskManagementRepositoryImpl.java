@@ -39,7 +39,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public List<Member> getMembers() {
-        return null;
+        return new ArrayList<>(members);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public List<Board> getBoards() {
-        return null;
+        return new ArrayList<>(boards);
     }
 
     @Override
