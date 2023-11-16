@@ -8,11 +8,15 @@ import java.util.List;
 
 public interface Team extends IdentifiableByName, Printable {
 
-
+    String getName();
 
     List<Member> getMembers();
 
     List<Board> getBoards();
+
+    void addMember(Member member);
+
+    void removeMember(Member member);
 
 
 }
