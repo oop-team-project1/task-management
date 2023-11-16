@@ -1,20 +1,20 @@
-package taskmanagement.commands.creation;
+package taskmanagement.commands.listing;
 
-import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.List;
 
-public class CreateNewPerson implements Command
+public class ShowBoardActivity implements Command
 {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    private final TaskManagementRepository taskManagementRepository;
-    private String name;
 
-    public CreateNewPerson(TaskManagementRepository taskManagementRepository)
+    private final TaskManagementRepository taskManagementRepository;
+
+    public ShowBoardActivity(TaskManagementRepository taskManagementRepository)
     {
         this.taskManagementRepository = taskManagementRepository;
     }
@@ -23,15 +23,13 @@ public class CreateNewPerson implements Command
     public String execute(List<String> parameters)
     {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        parseParameters(parameters);
-
-        Member createPerson = taskManagementRepository.createNewPerson(name);
-
-        return String.format(CommandsConstants.PERSON_CREATED_MESSAGE, createPerson.getName());
+        String name = parameters.get(0);
+        return showBoardActivity(name);
     }
 
-    private void parseParameters(List<String> parameters)
-    {
-        name = parameters.get(0);
+    private String showBoardActivity (String name) {
+        Board board = taskManagementRepository.findBoardByName(name);
+
+        return board.viewActivity();
     }
 }

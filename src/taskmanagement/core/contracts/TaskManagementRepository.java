@@ -3,9 +3,11 @@ package taskmanagement.core.contracts;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
+import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Feedback;
 import taskmanagement.models.tasks.contracts.Story;
+import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
@@ -22,7 +24,10 @@ public interface TaskManagementRepository
 
     Member createNewPerson(String name);
     Member findMemberByName(String personName);
+    Board findBoardByName(String boardName);
     Team findTeamByName(String teamName);
+    Story findStoryById(int id);
+    Task findTaskById(int id);
 
     Board findBoardByName(String boardName);
 
