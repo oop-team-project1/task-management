@@ -5,9 +5,9 @@ import taskmanagement.models.contracts.Member;
 
 import java.util.List;
 
-public interface Team {
+public interface Team extends IdentifiableByName{
 
-    String getName();
+
 
     List<Member> getMembers();
 

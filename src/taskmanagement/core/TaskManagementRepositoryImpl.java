@@ -1,7 +1,9 @@
 package taskmanagement.core;
 
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.exceptions.ElementNotFoundException;
 import taskmanagement.models.contracts.Board;
+import taskmanagement.models.contracts.IdentifiableByName;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
 import taskmanagement.models.tasks.contracts.Bug;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
+    public static final String MEMBER_DOES_NOT_EXIST = "Member %s does not exist!";
+    public static final String ELEMENT_NOT_FOUND_ERR = "No record with name %s";
     private List<Team> teams;
 
     private List<Member> members;
@@ -33,17 +37,27 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public List<Team> getTeams() {
-        return null;
+        return new ArrayList<>(teams);
     }
 
     @Override
     public List<Member> getMembers() {
-        return null;
+        return new ArrayList<>(members);
+    }
+
+    @Override
+    public Member findMemberByName(String personName) {
+       return this.findElementByName(getMembers(), personName);
+    }
+
+    @Override
+    public Team findTeamByName(String teamName) {
+        return this.findElementByName(getTeams(), teamName);
     }
 
     @Override
     public List<Board> getBoards() {
-        return null;
+        return new ArrayList<>(boards);
     }
 
     @Override
@@ -74,5 +88,15 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     @Override
     public Feedback createNewFeedback(String title, String description, int rating) {
         return null;
+    }
+
+    private <T extends IdentifiableByName> T findElementByName(List<T> elements, String name) {
+        for (T element : elements) {
+            if (element.getName().equals(name)) {
+                return element;
+            }
+        }
+
+        throw new ElementNotFoundException(String.format(ELEMENT_NOT_FOUND_ERR, name));
     }
 }
