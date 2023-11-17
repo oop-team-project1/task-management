@@ -68,4 +68,8 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
             setStatus(status);
         }
 
+    @Override
+    public void changeRating(int rating) {
+        setRating(rating);
+    }
 }

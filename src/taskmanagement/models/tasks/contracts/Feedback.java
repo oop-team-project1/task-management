@@ -8,4 +8,6 @@ public interface Feedback extends Task{
      FeedbackStatus getStatus();
     void changeStatus(FeedbackStatus status);
 
+    void changeRating(int rating);
+
 }
