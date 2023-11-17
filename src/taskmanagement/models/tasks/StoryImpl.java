@@ -104,7 +104,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
             throw new IllegalArgumentException(
                     String.format(PRIORITY_CHANGE_ERR, priority));
         }
-        logEvent(String.format("Size changed from %s to %s", this.status, newStatus));
+        logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
         this.status = newStatus;
     }
 }
