@@ -22,6 +22,9 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
     private final String RATING_VALUE_ERROR = String.format(
             "Rating should be a value between %d and %d",
             MIN_RATING_VALUE, MAX_RATING_VALUE);
+    public static final String STATUS_CHANGE_ERR = "Status already set to %s. " +
+            "If you still wish to change it, " +
+            "please provide a valid value.";
 
     private FeedbackStatus status;
     private int rating;
@@ -54,5 +57,16 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
     public FeedbackStatus getStatus() {
         return status;
     }
+
+
+        @Override
+        public void changeStatus(FeedbackStatus status) {
+            if (this.status == status) {
+                throw new IllegalArgumentException(
+                        String.format(STATUS_CHANGE_ERR, status));
+            }
+            logEvent(String.format("Status changed from %s to %s", this.status, status));
+            this.status = status;
+        }
 
 }
