@@ -65,8 +65,7 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
                 throw new IllegalArgumentException(
                         String.format(STATUS_CHANGE_ERR, status));
             }
-            logEvent(String.format("Status changed from %s to %s", this.status, status));
-            this.status = status;
+            setStatus(status);
         }
 
 }
