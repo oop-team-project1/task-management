@@ -1,6 +1,7 @@
 package taskmanagement.commands.creation;
 
 import com.sun.source.tree.TryTree;
+import org.w3c.dom.ls.LSLoadEvent;
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -9,15 +10,18 @@ import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
+import javax.swing.*;
 import java.util.List;
 
 public class CreateNewBugInBoard implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
-    private static final String ERROR_MESSAGE = "Invalid priority type!";
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
+    private static final String INVALID_PRIORITY = "Invalid priority type!";
+    private static final String INVALID_SEVERITY = "Invalid severity type!";
     private final TaskManagementRepository taskManagementRepository;
 
     private Board board;
@@ -29,6 +33,7 @@ public class CreateNewBugInBoard implements Command
     private String description;
     private String memberName;
     private Priority priority;
+    private Severity severity;
 
     public CreateNewBugInBoard(TaskManagementRepository taskManagementRepository)
     {
@@ -44,7 +49,7 @@ public class CreateNewBugInBoard implements Command
         board = taskManagementRepository.findBoardByName(boardName);
         member = taskManagementRepository.findMemberByName(memberName);
 
-        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority);
+        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity);
 
         return String.format(CommandsConstants.BUG_CREATED_MESSAGE, createBug.getId());
     }
@@ -55,10 +60,12 @@ public class CreateNewBugInBoard implements Command
         boardName = parameters.get(0);
 
         //and then the bug fields for its initialization
+        //TODO why don't we use parser helpers for the title? or other fields? I can input something else
         title = parameters.get(1);
         description = parameters.get(2);
         memberName = parameters.get(3);
-        priority = ParsingHelpers.tryParseEnum(parameters.get(4), priority.getDeclaringClass(), ERROR_MESSAGE);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(4), priority.getDeclaringClass(), INVALID_PRIORITY);
+        severity = ParsingHelpers.tryParseEnum(parameters.get(5), severity.getDeclaringClass(), INVALID_SEVERITY);
 
     }
 }
