@@ -19,7 +19,7 @@ public class CreateBoardInATeam implements Command {
     public CreateBoardInATeam(TaskManagementRepository taskManagementRepository) {
         this.taskManagementRepository = taskManagementRepository;
     }
-
+   // input: createboard <teamName> <boardName>
 
     @Override
     public String execute(List<String> parameters) {

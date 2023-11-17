@@ -30,6 +30,10 @@ public class ShowTeamBoards implements Command {
     private String getBoardsInATeam (String name) {
         Team team = taskManagementRepository.findTeamByName(name);
 
+        if(team.getBoards().isEmpty()) {
+            return BOARDS_ERR_MESSAGE;
+        }
+
         StringBuilder result = new StringBuilder();
         for(Board board : team.getBoards()) {
             result.append(board).append(System.lineSeparator());

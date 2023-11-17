@@ -16,7 +16,6 @@ import java.util.List;
 public class CreateFeedbackInBoard implements Command {
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
-    private static final String ERROR_MESSAGE = "Invalid status!";
     private final TaskManagementRepository taskManagementRepository;
 
     //TODO: check all about this class
@@ -30,6 +29,7 @@ public class CreateFeedbackInBoard implements Command {
     public CreateFeedbackInBoard(TaskManagementRepository taskManagementRepository) {
         this.taskManagementRepository = taskManagementRepository;
     }
+    //input createfeedback <boardName> <feedback fields - title, description, rating>
 
     @Override
     public String execute(List<String> parameters) {
