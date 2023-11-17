@@ -8,11 +8,9 @@ import taskmanagement.models.contracts.*;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.FeedbackImpl;
 import taskmanagement.models.tasks.TaskImpl;
-import taskmanagement.models.tasks.contracts.Bug;
-import taskmanagement.models.tasks.contracts.Feedback;
-import taskmanagement.models.tasks.contracts.Story;
-import taskmanagement.models.tasks.contracts.Task;
+import taskmanagement.models.tasks.contracts.*;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 
@@ -74,6 +72,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     //not sure if this cast is ok, but i think that there are no info that can be lost, so it should work
+
     @Override
     public Story findStoryById(int id)
     {
@@ -84,6 +83,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Feedback findFeedbackById(int id) {
         return (Feedback) this.findElementById(getTasks(), id);
     }
+    //TODO am not a fan of the casting, will get back to it to think if there is time
+    @Override
+    public Bug findBugById(int id) {return (Bug) this.findElementById(getTasks(), id);}
 
     @Override
     public Task findTaskById(int id)
@@ -121,9 +123,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug createNewBug(String title, String description, Member assignee, Priority priority)
+    public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity)
     {
-        Bug bug = new BugImpl(++id, title, description, assignee, priority);
+        Bug bug = new BugImpl(++id, title, description, assignee, priority, severity);
 
         for (int i = 0; i < members.size(); i++)
         {

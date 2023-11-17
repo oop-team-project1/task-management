@@ -9,6 +9,7 @@ import taskmanagement.models.tasks.contracts.Feedback;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 
@@ -31,11 +32,13 @@ public interface TaskManagementRepository
 
     Feedback findFeedbackById(int id);
 
+    Bug findBugById(int id);
+
 
     Team createNewTeam(String name);
     Board createNewBoard(String name);
 
-    Bug createNewBug(String title, String description, Member assignee, Priority priority);
+    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
     Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
     Feedback createNewFeedback(String title, String description, int rating);
 
