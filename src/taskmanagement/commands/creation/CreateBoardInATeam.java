@@ -31,7 +31,7 @@ public class CreateBoardInATeam implements Command {
 
     private String addBoardToATeam(String teamToAdd, String boardToAdd) {
         Team team = taskManagementRepository.findTeamByName(teamToAdd);
-        Board board = taskManagementRepository.findBoardByName(boardToAdd);
+        Board board = taskManagementRepository.createNewBoard(boardToAdd);
 
         team.addBoard(board);
 
