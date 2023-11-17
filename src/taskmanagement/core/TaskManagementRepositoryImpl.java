@@ -6,6 +6,7 @@ import taskmanagement.models.BoardImpl;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.*;
 import taskmanagement.models.tasks.BugImpl;
+import taskmanagement.models.tasks.FeedbackImpl;
 import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Feedback;
@@ -28,7 +29,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     private List<Team> teams;
     private List<Member> members;
     private List<Board> boards;
-    private List<TaskImpl> tasks;
+    private List<Task> tasks;
     private int id;
 
 
@@ -78,11 +79,18 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     {
         return (Story) this.findElementById(getTasks(), id);
     }
+
+    @Override
+    public Feedback findFeedbackById(int id) {
+        return (Feedback) this.findElementById(getTasks(), id);
+    }
+
     @Override
     public Task findTaskById(int id)
     {
         return this.findElementById(getTasks(), id);
     }
+
 
     @Override
     public List<Board> getBoards() {
@@ -136,7 +144,10 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public Feedback createNewFeedback(String title, String description, int rating) {
-        return null;
+        Feedback feedback = new FeedbackImpl(++id, title,description,rating);
+        //TODO: check the implementation
+        this.tasks.add(feedback);
+        return feedback;
     }
 
     @Override

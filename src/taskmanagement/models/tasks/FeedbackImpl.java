@@ -8,6 +8,7 @@ import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.feedback.FeedbackStatus;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
+import taskmanagement.models.tasks.feedback.Status;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.List;

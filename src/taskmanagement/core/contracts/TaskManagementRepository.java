@@ -29,6 +29,9 @@ public interface TaskManagementRepository
     Story findStoryById(int id);
     Task findTaskById(int id);
 
+    Feedback findFeedbackById(int id);
+
+
     Team createNewTeam(String name);
     Board createNewBoard(String name);
 
