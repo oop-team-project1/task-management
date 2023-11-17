@@ -1,5 +1,6 @@
 package taskmanagement.models.tasks;
 
+import taskmanagement.models.MemberImpl;
 import taskmanagement.models.comment.Comment;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.GenericStatus;
@@ -92,7 +93,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
     public void changeSize(Size newSize) {
         if (this.size == newSize) {
             throw new IllegalArgumentException(
-                    String.format(PRIORITY_CHANGE_ERR, priority));
+                    String.format(SIZE_CHANGE_ERR, priority));
         }
         logEvent(String.format("Size changed from %s to %s", this.size, newSize));
         this.size = newSize;
@@ -104,7 +105,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
             throw new IllegalArgumentException(
                     String.format(PRIORITY_CHANGE_ERR, priority));
         }
-        logEvent(String.format("Size changed from %s to %s", this.status, newStatus));
+        logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
         this.status = newStatus;
     }
 }
