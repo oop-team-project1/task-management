@@ -4,7 +4,6 @@ import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.tasks.contracts.Story;
-import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
@@ -34,7 +33,7 @@ public class ChangePriorityOfStory implements Command
         Story story = taskManagementRepository.findStoryById(storyId);
         story.changePriority(priority);
 
-        return String.format(CommandsConstants.PRIORITY_CHANGED_MESSAGE, story.getId());
+        return String.format(CommandsConstants.STORY_PRIORITY_CHANGED_MESSAGE, story.getId());
     }
 
     private void parseParameters(List<String> parameters)
