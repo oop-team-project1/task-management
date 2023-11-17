@@ -7,6 +7,7 @@ import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.*;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.FeedbackImpl;
+import taskmanagement.models.tasks.StoryImpl;
 import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.*;
 import taskmanagement.models.tasks.enums.Priority;
@@ -141,7 +142,12 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status) {
-        return null;
+        // checking if member exists is done in the command;
+        // TODO think if we can create it without member in constructor
+        Story story = new StoryImpl(++id,title,description,priority,size,assignee,status);
+        this.tasks.add(story);
+        findMemberByName(assignee.getName()).addTask(story);
+        return story;
     }
 
     @Override
