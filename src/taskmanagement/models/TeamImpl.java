@@ -18,6 +18,9 @@ public class TeamImpl implements Team
             "Team name must be between %s and %s characters long!",
             NAME_LEN_MIN,
             NAME_LEN_MAX);
+
+    private static final String MEMBER_EXISTS_ERR = "The member you are trying to add is already part of the team!";
+    public static final String MEMBER_DOES_NOT_EXIST = "The member you are trying to remove does not exists!";
     private String name;
     private List<Member> members;
     private List<Board> boards;
@@ -49,6 +52,17 @@ public class TeamImpl implements Team
     @Override
     public List<Member> getMembers() {
         return new ArrayList<>(members);
+    }
+
+    @Override
+    public void addMember(Member member) {
+        if (members.contains(member)) throw new IllegalArgumentException(MEMBER_EXISTS_ERR);
+        members.add(member);
+    }
+    @Override
+    public void removeMember(Member member){
+        if (!members.contains(member)) throw new IllegalArgumentException(MEMBER_DOES_NOT_EXIST);
+        members.remove(member);
     }
 
     @Override
