@@ -26,7 +26,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
     private Size size;
     private StoryStatus status;
     private Member assignee;
-
+    private boolean isAssigned = true;
     //TODO Implement in parent class with LogEvents
 
 
@@ -56,6 +56,26 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
 
     }
 
+    public void setAssignee(Member member) {
+        if (isAssigned) {
+            throw new IllegalArgumentException();
+        }
+        assignee = member;
+        isAssigned = true;
+    }
+
+    @Override
+    public void removeAssignee(Member member) {
+        //TODO overwrite equals in member
+
+        if (!assignee.equals(member)) {
+            throw new IllegalArgumentException();
+        }
+        assignee = null;
+        isAssigned = false;
+
+
+    }
 
     // TODO implement LogEvent class
     @Override

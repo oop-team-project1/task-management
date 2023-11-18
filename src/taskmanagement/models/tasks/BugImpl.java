@@ -11,7 +11,7 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
 
     //TODO why concat?
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s." +
-            "If you still wish to change it, please provide a valid value";
+                                                     "If you still wish to change it, please provide a valid value";
 
     public static final String SEVERITY_CHANGE_ERR =
             "Severity already set to %s." +
@@ -21,10 +21,11 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
             "Status already set to %s." +
             "If you still wish to change it, please provide a valid value";
 
-    private final Member assignee;
+    private Member assignee;
     private BugStatus status;
     private Priority priority;
     private Severity severity;
+    private boolean isAssigned = true;
 
     public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
         super(id, title, description);
@@ -43,6 +44,28 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
     @Override
     public Member getAssignee() {
         return assignee;
+    }
+
+    @Override
+    public void setAssignee(Member member) {
+        if (isAssigned) {
+            throw new IllegalArgumentException();
+        }
+        assignee = member;
+        isAssigned = true;
+    }
+
+    @Override
+    public void removeAssignee(Member member) {
+        //TODO overwrite equals in member
+
+        if (!assignee.equals(member)) {
+            throw new IllegalArgumentException();
+        }
+        assignee = null;
+        isAssigned = false;
+
+
     }
 
     @Override
@@ -93,7 +116,7 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
     public void changeSeverity(Severity newSeverity) {
         if (this.severity == newSeverity) {
             throw new IllegalArgumentException(
-                    String.format(SEVERITY_CHANGE_ERR,severity));
+                    String.format(SEVERITY_CHANGE_ERR, severity));
         }
         logEvent(String.format("Severity changed from %s to %s", this.severity, newSeverity));
         severity = newSeverity;
