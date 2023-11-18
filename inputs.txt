@@ -24,7 +24,7 @@ Assign task: AssignTask <Id> <newAssignee>
 
 Unassign task: <Id> <newAssignee>
 
-Create story: CreateStory <title> <description> <priority> <size> <status> <assignee> >
+Create story: CreateStory <title> <description> <memberName> <priority> <size> <status> >
 
 Create new team : CreateNewTeam <teamName>
 
