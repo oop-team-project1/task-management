@@ -5,11 +5,14 @@ import org.w3c.dom.ls.LSLoadEvent;
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.models.BoardImpl;
+import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
@@ -64,8 +67,8 @@ public class CreateNewBugInBoard implements Command
         title = parameters.get(1);
         description = parameters.get(2);
         memberName = parameters.get(3);
-        priority = ParsingHelpers.tryParseEnum(parameters.get(4), priority.getDeclaringClass(), INVALID_PRIORITY);
-        severity = ParsingHelpers.tryParseEnum(parameters.get(5), severity.getDeclaringClass(), INVALID_SEVERITY);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(4), Priority.class, INVALID_PRIORITY);
+        severity = ParsingHelpers.tryParseEnum(parameters.get(5), Severity.class, INVALID_SEVERITY);
 
     }
 }

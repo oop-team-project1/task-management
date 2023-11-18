@@ -9,6 +9,7 @@ import taskmanagement.models.tasks.contracts.Feedback;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
@@ -22,6 +23,7 @@ public interface TaskManagementRepository
 
     List<Member> getMembers();
     List<Board> getBoards();
+    List<Task> getTasks();
 
     Member createNewPerson(String name);
     Member findMemberByName(String personName);
@@ -44,6 +46,7 @@ public interface TaskManagementRepository
 
     void addTeam(Team teamToAdd);
     void addMember(Member member);
+    void addBoard(Board board);
     void addMemberToTeam(Member memberToAdd, Team team);
     void removeMemberFromTeam(Member memberToRemove, Team team);
 

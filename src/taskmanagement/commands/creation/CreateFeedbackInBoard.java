@@ -32,9 +32,11 @@ public class CreateFeedbackInBoard implements Command {
     //input createfeedback <boardName> <feedback fields - title, description, rating>
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute(List<String> parameters)
+    {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         parseParameters(parameters);
+
         Board board = taskManagementRepository.findBoardByName(boardName);
 
         Feedback feedback =  taskManagementRepository.createNewFeedback(title, description,rating);

@@ -11,6 +11,7 @@ import taskmanagement.models.tasks.StoryImpl;
 import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.*;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
@@ -52,6 +53,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public List<Member> getMembers() {
         return new ArrayList<>(members);
     }
+
+    @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
@@ -128,15 +131,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     {
         Bug bug = new BugImpl(++id, title, description, assignee, priority, severity);
 
-        for (int i = 0; i < members.size(); i++)
-        {
-           if (members.get(i).equals(assignee))
-           {
-               members.get(i).addTask(bug);
-               break;
-           }
-        }
-
+        this.tasks.add(bug);
+        findMemberByName(assignee.getName()).addTask(bug);
         return bug;
     }
 
@@ -169,6 +165,13 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         if (members.contains(member)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, member.getName()));
         members.add(member);
 
+    }
+
+    @Override
+    public void addBoard(Board board) {
+        if (boards.contains(board)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, board.getName()));
+
+        boards.add(board);
     }
 
     @Override

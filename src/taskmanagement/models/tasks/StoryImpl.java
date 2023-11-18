@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Stack;
 
 
-public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
+public class StoryImpl extends TaskImpl implements Story {
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s. " +
                                                      "If you still wish to change it, " +
                                                      "please provide a valid value.";
@@ -40,7 +40,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
     }
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size, Member assignee) {
-        super(id, title, description, StoryStatus.NOT_DONE);
+        super(id, title, description);
         this.priority = priority;
         this.size = size;
         this.assignee = assignee;
@@ -58,8 +58,7 @@ public class StoryImpl extends TaskImpl<StoryStatus> implements Story {
 
 
     // TODO implement LogEvent class
-    @Override
-    protected void setStatus(StoryStatus status) {
+    private void setStatus(StoryStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;
     }

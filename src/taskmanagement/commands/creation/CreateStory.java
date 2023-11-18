@@ -3,8 +3,11 @@ package taskmanagement.commands.creation;
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.models.BoardImpl;
+import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
+import taskmanagement.models.tasks.bug.Status;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
@@ -63,9 +66,9 @@ public class CreateStory implements Command {
         title = parameters.get(1);
         description = parameters.get(2);
         memberName = parameters.get(3);
-        priority = ParsingHelpers.tryParseEnum(parameters.get(4), priority.getDeclaringClass(), INVALID_PRIORITY);
-        size = ParsingHelpers.tryParseEnum(parameters.get(5), size.getDeclaringClass(), INVALID_SIZE);
-        status = ParsingHelpers.tryParseEnum(parameters.get(6), status.getDeclaringClass(), INVALID_STATUS);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(4), Priority.class, INVALID_PRIORITY);
+        size = ParsingHelpers.tryParseEnum(parameters.get(5), Size.class, INVALID_SIZE);
+        status = ParsingHelpers.tryParseEnum(parameters.get(6), StoryStatus.class, INVALID_STATUS);
 
     }
 

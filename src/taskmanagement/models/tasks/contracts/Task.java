@@ -4,6 +4,7 @@ import taskmanagement.models.comment.Comment;
 import taskmanagement.models.contracts.Assignable;
 import taskmanagement.models.contracts.Commentable;
 import taskmanagement.models.contracts.Identifiable;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 
 import java.util.List;
 
@@ -15,10 +16,6 @@ public interface Task extends Identifiable, Commentable{
     // TODO getComments should return a copy of the list.
     //  Separate method to print the comments in repo
     public List<String> getHistory();
-
-    public void advanceStatus();
-
-    public void revertStatus();
 
     public void addComment(Comment comment);
 

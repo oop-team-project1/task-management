@@ -2,12 +2,13 @@ package taskmanagement.models.tasks;
 
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Bug;
+import taskmanagement.models.tasks.contracts.GenericStatus;
 import taskmanagement.models.tasks.contracts.Prioritizable;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 
-public class BugImpl extends TaskImpl<BugStatus> implements Bug {
+public class BugImpl extends TaskImpl implements Bug {
 
     //TODO why concat?
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s." +
@@ -31,6 +32,7 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
         this.assignee = assignee;
         this.priority = priority;
         this.severity = severity;
+        this.status = BugStatus.ACTIVE;
     }
 
 
@@ -45,12 +47,13 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
         return assignee;
     }
 
-    @Override
-    protected void setStatus(BugStatus status) {
+    private void setStatus(BugStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;
 
     }
+
+
 
     public Priority getPriority() {
         return priority;
@@ -76,13 +79,11 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
     public void changeStatus(BugStatus newStatus) {
         if (this.status == newStatus) {
             throw new IllegalArgumentException(
-                    String.format(STATUS_CHANGE_ERR, severity));
+                    String.format(STATUS_CHANGE_ERR, status));
         }
         logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
         status = newStatus;
-
     }
-
 
     @Override
     public Severity getSeverity() {
@@ -99,4 +100,5 @@ public class BugImpl extends TaskImpl<BugStatus> implements Bug {
         severity = newSeverity;
 
     }
+
 }

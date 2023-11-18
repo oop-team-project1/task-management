@@ -4,7 +4,7 @@ import taskmanagement.models.contracts.Assignable;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 
-public interface Story extends Assignable,Prioritizable, Task {
+public interface Story extends Assignable,Prioritizable, Task, GenericStatus<StoryStatus> {
    public StoryStatus getStatus();
    public Size getSize();
 

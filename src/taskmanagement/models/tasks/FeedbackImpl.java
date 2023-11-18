@@ -12,7 +12,7 @@ import taskmanagement.utils.ValidationHelper;
 
 import java.util.List;
 
-public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
+public class FeedbackImpl extends TaskImpl implements Feedback {
 
     // TODO discuss rating system, it is temporary
 
@@ -34,8 +34,7 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
         setRating(rating);
     }
 
-    @Override
-    protected void setStatus(FeedbackStatus status) {
+    private void setStatus(FeedbackStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;
     }
@@ -58,14 +57,15 @@ public class FeedbackImpl extends TaskImpl<FeedbackStatus> implements Feedback {
     }
 
 
-        @Override
-        public void changeStatus(FeedbackStatus status) {
-            if (this.status == status) {
-                throw new IllegalArgumentException(
-                        String.format(STATUS_CHANGE_ERR, status));
-            }
-            setStatus(status);
+    @Override
+    public void changeStatus(FeedbackStatus status) {
+        if (this.status == status) {
+            throw new IllegalArgumentException(
+                    String.format(STATUS_CHANGE_ERR, status));
         }
+        setStatus(status);
+    }
+
 
     @Override
     public void changeRating(int rating) {

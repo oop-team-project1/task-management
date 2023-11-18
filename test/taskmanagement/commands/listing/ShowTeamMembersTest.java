@@ -9,7 +9,7 @@ import taskmanagement.models.MemberImpl;
 import taskmanagement.models.TeamImpl;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
-import utils.TestHelpers;
+import taskmanagement.utils.TestHelpers;
 
 import java.util.ArrayList;
 import java.util.List;
