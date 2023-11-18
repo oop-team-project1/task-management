@@ -1,8 +1,8 @@
 package taskmanagement.commands;
 
-public class CommandsConstants
-{
+public class CommandsConstants {
     public static final String PERSON_CREATED_MESSAGE = "Person with name %s was created.";
+    public static final String TEAM_CREATED_MESSAGE = "Team with name %s was created.";
     public static final String BUG_CREATED_MESSAGE = "Bug with id %d was created.";
     public static final String FEEDBACK_CREATED_MESSAGE = "Feedback with id %s was created.";
     public static final String STORY_CREATED_MESSAGE = "Story with id %d was created!";
@@ -13,7 +13,8 @@ public class CommandsConstants
     public static final String STATUS_CHANGED_MESSAGE = "Status of story with id %d was changed.";
     public static final String RATING_CHANGED_MESSAGE = "Rating of feedback with id %d was changed.";
     public static final String COMMENT_ADDED_TO_TASK = "Comment was added to task with id %d.";
-
     public static final String BUG_SEVERITY_CHANGED_MESSAGE = "Severity of bug with id %d was changed to %s";
     public static final String BUG_STATUS_CHANGED_MESSAGE = "Status of bug with id %d was changed to %s.";
+    public static final String MEMBER_UNASSIGNED = "Person with name %s was unassigned from task with id %d.";
+    public static final String MEMBER_ASSIGNED = "Person with name %s was assigned to task with id %d.";
 }

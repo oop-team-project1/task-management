@@ -1,4 +1,4 @@
-package taskmanagement.commands.modifing;
+package taskmanagement.commands.modifying;
 
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;

@@ -4,6 +4,7 @@ import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.exceptions.ElementNotFoundException;
 import taskmanagement.models.BoardImpl;
 import taskmanagement.models.MemberImpl;
+import taskmanagement.models.TeamImpl;
 import taskmanagement.models.contracts.*;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.FeedbackImpl;
@@ -114,7 +115,11 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public Team createNewTeam(String name) {
-        return null;
+        Team team = new TeamImpl(name);
+        teams.add(team);
+
+        return team;
+
     }
 
     @Override
