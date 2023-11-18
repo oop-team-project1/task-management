@@ -22,10 +22,11 @@ public class BugImpl extends TaskImpl implements Bug {
             "Status already set to %s." +
             "If you still wish to change it, please provide a valid value";
 
-    private final Member assignee;
+    private Member assignee;
     private BugStatus status;
     private Priority priority;
     private Severity severity;
+    private boolean isAssigned = true;
 
     public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
         super(id, title, description);
@@ -33,6 +34,7 @@ public class BugImpl extends TaskImpl implements Bug {
         this.priority = priority;
         this.severity = severity;
         this.status = BugStatus.ACTIVE;
+
     }
 
 
@@ -53,7 +55,27 @@ public class BugImpl extends TaskImpl implements Bug {
 
     }
 
+    @Override
+    public void setAssignee(Member member)
+    {
+        if (isAssigned) {
+            throw new IllegalArgumentException();
+        }
+        assignee = member;
+        isAssigned = true;
+    }
 
+    @Override
+    public void removeAssignee(Member member)
+    {
+        //TODO overwrite equals in member
+
+        if (!assignee.equals(member)) {
+            throw new IllegalArgumentException();
+        }
+        assignee = null;
+        isAssigned = false;
+    }
 
     public Priority getPriority() {
         return priority;

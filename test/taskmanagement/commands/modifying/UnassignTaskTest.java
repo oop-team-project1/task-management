@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import taskmanagement.commands.listing.ShowTeamMembers;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
-import utils.TestHelpers;
+import taskmanagement.utils.TestHelpers;
 
 import java.util.List;
 
