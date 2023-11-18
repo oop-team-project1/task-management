@@ -1,0 +1,13 @@
+inputs:
+
+Create board in a team: createboard <teamName> <boardName>
+
+Create feedback in a board: createfeedback <boardName> <feedback fields - title, description, rating>
+
+Show team boards: showteamboards <teamName>
+
+Show person's activity: showmemberactivity <memberName>
+
+Change feedback status: changefeedbackstatus <feedbackTitle/ID??> <newStatus>
+
+Change feedback rating: changefeedbackrating <feedbackTitle/ID> <newRating>
