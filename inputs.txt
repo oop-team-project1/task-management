@@ -20,3 +20,11 @@ Change bug status: ChangeBugStatus <ID> <newStatus>
 
 Show team members: ShowTeamMembers <teamName>
 
+Assign task: AssignTask <Id> <newAssignee>
+
+Unassign task: <Id> <newAssignee>
+
+Create story: CreateStory <title> <description> <priority> <size> <status> <assignee> >
+
+Create new team : CreateNewTeam <teamName>
+
