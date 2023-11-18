@@ -3,15 +3,10 @@ package taskmanagement.commands.creation;
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
-import taskmanagement.models.BoardImpl;
-import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.bug.Status;
-import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 import taskmanagement.utils.ParsingHelpers;
@@ -19,7 +14,7 @@ import taskmanagement.utils.ValidationHelper;
 
 import java.util.List;
 
-public class CreateStory implements Command {
+public class CreateStoryInABoard implements Command {
 
     // TODO make a story with 1 argument less? Create story without member
 
@@ -41,7 +36,7 @@ public class CreateStory implements Command {
     private Size size;
     private StoryStatus status;
 
-    public CreateStory(TaskManagementRepository taskManagementRepository) {
+    public CreateStoryInABoard(TaskManagementRepository taskManagementRepository) {
         this.taskManagementRepository = taskManagementRepository;
     }
 
