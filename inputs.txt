@@ -11,3 +11,12 @@ Show person's activity: showmemberactivity <memberName>
 Change feedback status: changefeedbackstatus <feedbackTitle/ID??> <newStatus>
 
 Change feedback rating: changefeedbackrating <feedbackTitle/ID> <newRating>
+
+Change bug priority: ChangeBugPriority <ID> <newPriority>
+
+Change bug severity: ChangeBugSeverity <ID> <newSeverity>
+
+Change bug status: ChangeBugStatus <ID> <newStatus>
+
+Show team members: ShowTeamMembers <teamName>
+
