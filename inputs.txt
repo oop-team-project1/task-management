@@ -8,9 +8,9 @@ Show team boards: showteamboards <teamName>
 
 Show person's activity: showmemberactivity <memberName>
 
-Change feedback status: changefeedbackstatus <feedbackTitle/ID??> <newStatus>
+Change feedback status: changefeedbackstatus <ID> <newStatus>
 
-Change feedback rating: changefeedbackrating <feedbackTitle/ID> <newRating>
+Change feedback rating: changefeedbackrating <ID> <newRating>
 
 Change bug priority: ChangeBugPriority <ID> <newPriority>
 
