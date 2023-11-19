@@ -22,7 +22,7 @@ public class BugImpl extends TaskImpl implements Bug {
             "Status already set to %s." +
             "If you still wish to change it, please provide a valid value";
 
-    private final Member assignee;
+    private  Member assignee;
     private BugStatus status;
     private Priority priority;
     private Severity severity;
@@ -50,6 +50,18 @@ public class BugImpl extends TaskImpl implements Bug {
     private void setStatus(BugStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;
+
+    }
+    @Override
+    public void removeAssignee(Member member) {
+        //TODO overwrite equals in member
+
+        if (!assignee.equals(member)) {
+            throw new IllegalArgumentException();
+        }
+        assignee = null;
+        isAssigned = false;
+
 
     }
 
@@ -100,5 +112,17 @@ public class BugImpl extends TaskImpl implements Bug {
         severity = newSeverity;
 
     }
+
+    @Override
+    public void setAssignee(Member member) {
+        if (isAssigned) {
+            throw new IllegalArgumentException();
+        }
+        assignee = member;
+        isAssigned = true;
+    }
+
+
+
 
 }
