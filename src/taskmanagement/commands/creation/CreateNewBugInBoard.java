@@ -22,7 +22,7 @@ import java.util.List;
 
 public class CreateNewBugInBoard implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
     private static final String INVALID_PRIORITY = "Invalid priority type!";
     private static final String INVALID_SEVERITY = "Invalid severity type!";
     private final TaskManagementRepository taskManagementRepository;

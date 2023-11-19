@@ -47,6 +47,7 @@ public interface TaskManagementRepository
     void addTeam(Team teamToAdd);
     void addMember(Member member);
     void addBoard(Board board);
+    void addTask(Task task);
     void addMemberToTeam(Member memberToAdd, Team team);
     void removeMemberFromTeam(Member memberToRemove, Team team);
 

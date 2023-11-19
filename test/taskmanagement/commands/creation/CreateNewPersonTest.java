@@ -15,8 +15,6 @@ import java.util.List;
 
 public class CreateNewPersonTest
 {
-    public static final int EXPECTED_NUMBER_OF_PARAMS = 1;
-
     private Command command;
     private TaskManagementRepository taskManagementRepository;
 
@@ -30,7 +28,7 @@ public class CreateNewPersonTest
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected()
     {
-        List<String> params = TestHelpers.getList(EXPECTED_NUMBER_OF_PARAMS + 1);
+        List<String> params = TestHelpers.getList(CreateNewPerson.EXPECTED_NUMBER_OF_ARGUMENTS + 1);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }

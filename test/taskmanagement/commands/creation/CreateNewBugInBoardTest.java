@@ -10,6 +10,7 @@ import taskmanagement.models.BoardImpl;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
+import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
@@ -21,13 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreateNewBugInBoardTest
 {
-    private static final int EXPECTED_NUMBER_OF_PARAMS = 7;
-    private static final String VALID_BUG_TITLE = "xxxxxxxxxx";
-    private static final String VALID_BUG_DESCRIPTION = "xxxxxxxxxx";
-    private static final String VALID_BUG_ASSIGNEE_NAME = "xxxxx";
-    private static final String VALID_BOARD_NAME = "xxxxx";
-    private static final String INVALID_TEXT = "xxx";
-
+    private static final String VALID_BUG_TITLE = TestHelpers.getString(10);
+    private static final String VALID_BUG_DESCRIPTION = TestHelpers.getString(10);
+    private static final String VALID_BUG_ASSIGNEE_NAME = TestHelpers.getString(5);
+    private static final String VALID_BOARD_NAME = TestHelpers.getString(5);
+    private static final String INVALID_TEXT = TestHelpers.getString(3);
 
 
     private Command command;
@@ -43,7 +42,7 @@ public class CreateNewBugInBoardTest
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected()
     {
-        List<String> params = TestHelpers.getList(EXPECTED_NUMBER_OF_PARAMS + 1);
+        List<String> params = TestHelpers.getList(CreateNewBugInBoard.EXPECTED_NUMBER_OF_ARGUMENTS + 1);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }

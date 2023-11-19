@@ -180,6 +180,13 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
+    public void addTask(Task task) {
+        if (tasks.contains(task)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, task.getTitle()));
+
+        tasks.add(task);
+    }
+
+    @Override
     public void addMemberToTeam(Member memberToAdd, Team team) {
         if(!teams.contains(team)) throw new IllegalArgumentException("Team does not exist!");
         team.addMember(memberToAdd);

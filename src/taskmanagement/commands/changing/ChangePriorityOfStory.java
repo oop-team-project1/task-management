@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ChangePriorityOfStory implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String ERROR_MESSAGE = "Invalid priority type!";
     private final TaskManagementRepository taskManagementRepository;
 
@@ -39,6 +39,6 @@ public class ChangePriorityOfStory implements Command
     private void parseParameters(List<String> parameters)
     {
         storyId = ParsingHelpers.tryParseInteger(parameters.get(0), "story id");
-        priority = ParsingHelpers.tryParseEnum(parameters.get(1), priority.getDeclaringClass(), ERROR_MESSAGE);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(1), Priority.class, ERROR_MESSAGE);
     }
 }

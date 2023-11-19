@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ChangeSizeOfStory implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String ERROR_MESSAGE = "Invalid size type!";
     private final TaskManagementRepository taskManagementRepository;
 
@@ -39,6 +39,6 @@ public class ChangeSizeOfStory implements Command
     private void parseParameters(List<String> parameters)
     {
         storyId = ParsingHelpers.tryParseInteger(parameters.get(0), "story id");
-        size = ParsingHelpers.tryParseEnum(parameters.get(1), size.getDeclaringClass(), ERROR_MESSAGE);
+        size = ParsingHelpers.tryParseEnum(parameters.get(1), Size.class, ERROR_MESSAGE);
     }
 }

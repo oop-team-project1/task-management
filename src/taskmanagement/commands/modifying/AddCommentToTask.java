@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AddCommentToTask implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
 
     private final TaskManagementRepository taskManagementRepository;
 
