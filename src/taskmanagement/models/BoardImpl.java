@@ -54,7 +54,6 @@ public class BoardImpl implements Board {
 
     }
 
-    //view activity on a board?
 
     @Override
     public String viewActivity() {
@@ -71,6 +70,7 @@ public class BoardImpl implements Board {
     public String print() {
         StringBuilder result = new StringBuilder();
         result.append(getName()).append(System.lineSeparator());
+        result.append(viewActivity());
         return result.toString();
     }
 }
