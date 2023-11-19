@@ -28,3 +28,18 @@ Create story: CreateStory <title> <description> <memberName> <priority> <size> <
 
 Create new team : CreateNewTeam <teamName>
 
+Create new person : CreateNewPerson <personName>
+
+Create new bug in board: CreateNewBugInBoard <boardName> <title> <description> <memberName> <priority> <severity>
+
+Show all teams: ShowAllTeams <>
+
+Show board activity: ShowBoardActivity <boardName>
+
+Change priority of story: ChangePriorityOfStory <storyId> <priority>
+
+Change size of story: ChangeSizeOfStory <storyId> <size>
+
+Change status of story: ChangeStoryStatus <storyId> <status>
+
+Add comment to task: AddCommentToTask <taskID> <content> <author>
