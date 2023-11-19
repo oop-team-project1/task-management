@@ -12,7 +12,7 @@ public class BoardImpl implements Board {
     public static final int NAME_MIN_LENGTH = 5;
     public static final int NAME_MAX_LENGTH = 15;
     public static final String ADD_TASK_TO_LIST = "Task %s added to board %s";
-    public static final String HISTORY_MESSAGE = "Activity History on Board %s";
+    public static final String HISTORY_MESSAGE = "Activity History on Board %s: ";
     private String name;
     private List<Task> tasks;
     private List<String> activityHistory;
@@ -54,8 +54,6 @@ public class BoardImpl implements Board {
 
     }
 
-    //view activity on a board?
-
     @Override
     public String viewActivity() {
         StringBuilder result = new StringBuilder(String.format(HISTORY_MESSAGE, getName()));
@@ -71,6 +69,7 @@ public class BoardImpl implements Board {
     public String print() {
         StringBuilder result = new StringBuilder();
         result.append(getName()).append(System.lineSeparator());
+        result.append(viewActivity());
         return result.toString();
     }
 }
