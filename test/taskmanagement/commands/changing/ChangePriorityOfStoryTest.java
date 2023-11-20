@@ -23,6 +23,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChangePriorityOfStoryTest
+
 {
     private Command command;
     private TaskManagementRepository taskManagementRepository;

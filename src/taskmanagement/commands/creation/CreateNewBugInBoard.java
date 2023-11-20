@@ -18,6 +18,7 @@ import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
 import javax.swing.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class CreateNewBugInBoard implements Command
@@ -37,6 +38,8 @@ public class CreateNewBugInBoard implements Command
     private String memberName;
     private Priority priority;
     private Severity severity;
+    private String steps;
+    private List<String> stepsToReproduce;
 
     public CreateNewBugInBoard(TaskManagementRepository taskManagementRepository)
     {
@@ -52,7 +55,7 @@ public class CreateNewBugInBoard implements Command
         board = taskManagementRepository.findBoardByName(boardName);
         member = taskManagementRepository.findMemberByName(memberName);
 
-        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity);
+        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity, stepsToReproduce);
 
         return String.format(CommandsConstants.BUG_CREATED_MESSAGE, createBug.getId());
     }
@@ -69,6 +72,10 @@ public class CreateNewBugInBoard implements Command
         memberName = parameters.get(3);
         priority = ParsingHelpers.tryParseEnum(parameters.get(4), Priority.class, INVALID_PRIORITY);
         severity = ParsingHelpers.tryParseEnum(parameters.get(5), Severity.class, INVALID_SEVERITY);
+        steps = parameters.get(6);
+        stepsToReproduce = Arrays.stream(steps.split(";")).toList();
+
+
 
     }
 }

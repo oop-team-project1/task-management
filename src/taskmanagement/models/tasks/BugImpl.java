@@ -8,6 +8,9 @@ import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BugImpl extends TaskImpl implements Bug {
 
     //TODO why concat?
@@ -26,20 +29,25 @@ public class BugImpl extends TaskImpl implements Bug {
     private BugStatus status;
     private Priority priority;
     private Severity severity;
+    private List<String> stepsToReproduce;
     private boolean isAssigned = true;
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
+
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce) {
         super(id, title, description);
         this.assignee = assignee;
         this.priority = priority;
         this.severity = severity;
+        setStepsToReproduce(stepsToReproduce);
         this.status = BugStatus.ACTIVE;
 
     }
 
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, BugStatus status) {
-        this(id, title, description, assignee, priority, severity);
+
+
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, BugStatus status, List<String> stepsToReproduce) {
+        this(id, title, description, assignee, priority, severity,stepsToReproduce);
         this.status = status;
     }
 
@@ -121,6 +129,11 @@ public class BugImpl extends TaskImpl implements Bug {
         logEvent(String.format("Severity changed from %s to %s", this.severity, newSeverity));
         severity = newSeverity;
 
+    }
+
+    private void setStepsToReproduce(List<String> stepsToReproduce) {
+        if(stepsToReproduce.isEmpty()) throw new IllegalArgumentException("List of steps to reproduce the bug can't be empty!");
+        this.stepsToReproduce = new ArrayList<>(stepsToReproduce);
     }
 
 }

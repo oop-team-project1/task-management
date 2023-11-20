@@ -43,7 +43,7 @@ public class AddCommentToTaskTest
     {
         List<String> params = List.of(String.valueOf(1), TestHelpers.getString(5), TestHelpers.getString(5));
         Member member = new MemberImpl(TestHelpers.getString(5));
-        Task task = new BugImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), member, Priority.LOW, Severity.CRITICAL);
+        Task task = new BugImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), member, Priority.LOW, Severity.CRITICAL, TestHelpers.getList(10));
 
         taskManagementRepository.addMember(member);
         taskManagementRepository.addTask(task);

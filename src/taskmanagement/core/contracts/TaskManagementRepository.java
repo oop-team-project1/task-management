@@ -40,7 +40,7 @@ public interface TaskManagementRepository
     Team createNewTeam(String name);
     Board createNewBoard(String name);
 
-    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
+    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce);
     Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
     Feedback createNewFeedback(String title, String description, int rating);
 
