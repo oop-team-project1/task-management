@@ -8,4 +8,8 @@ public class TestHelpers
     public static List<String> getList(int wantedSize) {
         return Arrays.asList(new String[wantedSize]);
     }
+
+    public static String getString(int length) {
+        return "x".repeat(length);
+    }
 }
