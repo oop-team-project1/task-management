@@ -93,9 +93,6 @@ public abstract class TaskImpl implements Task {
         comments.remove(comment);
     }
 
-    public abstract void revertStatus();
-    public abstract void advanceStatus();
-
     //TODO Write toString method
 
 
