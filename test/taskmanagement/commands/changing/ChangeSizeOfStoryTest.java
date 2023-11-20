@@ -1,8 +1,8 @@
 package taskmanagement.commands.changing;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -23,7 +23,7 @@ public class ChangeSizeOfStoryTest
     private Command command;
     private TaskManagementRepository taskManagementRepository;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.taskManagementRepository = new TaskManagementRepositoryImpl();

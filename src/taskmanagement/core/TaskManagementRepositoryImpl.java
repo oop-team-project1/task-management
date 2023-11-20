@@ -127,7 +127,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     {
         Board board = new BoardImpl(name);
         this.boards.add(board);
-
         return board;
     }
 
@@ -135,7 +134,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce)
     {
         Bug bug = new BugImpl(++id, title, description, assignee, priority, severity, stepsToReproduce);
-
         this.tasks.add(bug);
         findMemberByName(assignee.getName()).addTask(bug);
         return bug;
@@ -169,20 +167,17 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public void addMember(Member member) {
         if (members.contains(member)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, member.getName()));
         members.add(member);
-
     }
 
     @Override
     public void addBoard(Board board) {
         if (boards.contains(board)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, board.getName()));
-
         boards.add(board);
     }
 
     @Override
     public void addTask(Task task) {
         if (tasks.contains(task)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, task.getTitle()));
-
         tasks.add(task);
     }
 
