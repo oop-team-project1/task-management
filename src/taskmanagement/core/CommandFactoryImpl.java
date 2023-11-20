@@ -4,10 +4,7 @@ import taskmanagement.commands.changing.*;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.commands.creation.*;
 import taskmanagement.commands.enums.CommandType;
-import taskmanagement.commands.listing.ShowAllPeople;
-import taskmanagement.commands.listing.ShowAllTeams;
-import taskmanagement.commands.listing.ShowPersonActivity;
-import taskmanagement.commands.listing.ShowTeamMembers;
+import taskmanagement.commands.listing.*;
 import taskmanagement.commands.modifying.AddCommentToTask;
 import taskmanagement.commands.modifying.AddPersonToTeam;
 import taskmanagement.commands.modifying.AssignTask;
@@ -26,11 +23,14 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllPeople(repository);
             case SHOWPERSONACTIVITY:
                 return new ShowPersonActivity(repository);
+            case SHOWBOARDACTIVITY:
+                return new ShowBoardActivity(repository);
+            case CREATENEWPERSON:
+                return new CreateNewPerson(repository);
             case CREATENEWTEAM:
                 return new CreateNewTeam(repository);
             case SHOWALLTEAMS:
                 return new ShowAllTeams(repository);
-            //TODO Implement
             case ADDPERSONTOTEAM:
                 return new AddPersonToTeam(repository);
             case SHOWALLTEAMMEMBERS:
@@ -49,13 +49,16 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeBugPriority(repository);
             case CHANGESTORYSTATUS:
                 return new ChangeStoryStatus(repository);
+            case CHANGESTORYSIZE:
+                return new ChangeSizeOfStory(repository);
             case CHANGESTORYPRIORITY:
                 return new ChangePriorityOfStory(repository);
             case CHANGEFEEDBACKSTATUS:
                 return new ChangeFeedbackStatus(repository);
             case CHANGEFEEDBACKRATING:
                 return new ChangeFeedbackRating(repository);
-            case CREATEBOARD: return new CreateBoardInATeam(repository);
+            case CREATEBOARD:
+                return new CreateBoardInATeam(repository);
             case ASSIGNTASKTOPERSON:
                 new AssignTask(repository);
             case UNASSIGNTASKTOPERSON:
