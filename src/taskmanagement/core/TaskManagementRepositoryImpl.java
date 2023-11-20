@@ -132,9 +132,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce)
+    public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity)
     {
-        Bug bug = new BugImpl(++id, title, description, assignee, priority, severity, stepsToReproduce);
+        Bug bug = new BugImpl(++id, title, description, assignee, priority, severity);
 
         this.tasks.add(bug);
         findMemberByName(assignee.getName()).addTask(bug);
