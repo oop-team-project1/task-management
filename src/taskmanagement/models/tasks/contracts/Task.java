@@ -8,7 +8,7 @@ import taskmanagement.models.tasks.enums.bug.BugStatus;
 
 import java.util.List;
 
-public interface Task extends Identifiable, Commentable{
+public interface Task extends Identifiable, Commentable,LinearStatusModification{
     public String getTitle();
 
     public String getDescription();
