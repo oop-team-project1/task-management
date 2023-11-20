@@ -36,10 +36,13 @@ public class CommandFactoryImpl implements CommandFactory {
             case SHOWALLTEAMMEMBERS:
                 return new ShowTeamMembers(repository);
             case CREATENEWBUG:
+            case CREATENEWASSIGNEDBUG:
                 return new CreateNewBugInBoard(repository);
             case CREATENEWSTORY:
+            case CREATENEWASSIGNEDSTORY:
                 return new CreateStory(repository);
             case CREATENEWFEEDBACK:
+            case CREATENEWASSIGNEDFEEDBACK:
                 return new CreateFeedbackInBoard(repository);
             case CHANGEBUGSTATUS:
                 return new ChangeBugStatus(repository);

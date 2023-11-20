@@ -93,7 +93,7 @@ public class CreateNewBugInBoardTest
     }
 
     @Test
-    public void execute_Should_ThrowException_When_DifferentAssigneeNameLenght()
+    public void execute_Should_ThrowException_When_DifferentAssigneeNameLength()
     {
         List<String> params = List.of(VALID_BOARD_NAME,
                 VALID_BUG_TITLE,
@@ -167,7 +167,6 @@ public class CreateNewBugInBoardTest
         Member member = new MemberImpl(VALID_BUG_ASSIGNEE_NAME);
         taskManagementRepository.addMember(member);
         taskManagementRepository.addBoard(board);
-
 
         command.execute(params);
 

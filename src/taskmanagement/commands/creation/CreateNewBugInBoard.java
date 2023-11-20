@@ -26,6 +26,7 @@ public class CreateNewBugInBoard implements Command
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 7;
     private static final String INVALID_PRIORITY = "Invalid priority type!";
     private static final String INVALID_SEVERITY = "Invalid severity type!";
+    private static final String INVALID_ARGUMENTS_SIZE = "Invalid arguments size!";
     private final TaskManagementRepository taskManagementRepository;
 
     private Board board;
@@ -49,24 +50,39 @@ public class CreateNewBugInBoard implements Command
     @Override
     public String execute(List<String> parameters)
     {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        parseParameters(parameters);
+        ValidationHelper.validateValueInRange(parameters.size(), 6, 7, INVALID_ARGUMENTS_SIZE);
+        int parametersCount = parameters.size();
+        parseParameters(parameters, parametersCount);
 
         board = taskManagementRepository.findBoardByName(boardName);
-        member = taskManagementRepository.findMemberByName(memberName);
-
-        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity, stepsToReproduce);
+        Bug createBug;
+        if (parametersCount == 7) {
+            member = taskManagementRepository.findMemberByName(memberName);
+            createBug = taskManagementRepository.createNewBugWithMember(title, description, member, priority, severity, stepsToReproduce);
+        }
+        else
+        {
+            createBug = taskManagementRepository.createNewBugWithoutMember(title, description, priority, severity, stepsToReproduce);
+        }
 
         return String.format(CommandsConstants.BUG_CREATED_MESSAGE, createBug.getId());
     }
 
-    private void parseParameters(List<String> parameters)
+    private void parseParameters(List<String> parameters, int count)
     {
-        //First we will enter the name of the board where we want to add the bug
-        boardName = parameters.get(0);
+        if (count == 7)
+        {
+            parseWithMember(parameters);
+        }
+        else
+        {
+            parseWithoutMember(parameters);
+        }
+    }
 
-        //and then the bug fields for its initialization
-        //TODO why don't we use parser helpers for the title? or other fields? I can input something else
+    private void parseWithMember(List<String> parameters)
+    {
+        boardName = parameters.get(0);
         title = parameters.get(1);
         description = parameters.get(2);
         memberName = parameters.get(3);
@@ -74,8 +90,15 @@ public class CreateNewBugInBoard implements Command
         severity = ParsingHelpers.tryParseEnum(parameters.get(5), Severity.class, INVALID_SEVERITY);
         steps = parameters.get(6);
         stepsToReproduce = Arrays.stream(steps.split(";")).toList();
-
-
-
+    }
+    private void parseWithoutMember(List<String> parameters)
+    {
+        boardName = parameters.get(0);
+        title = parameters.get(1);
+        description = parameters.get(2);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(3), Priority.class, INVALID_PRIORITY);
+        severity = ParsingHelpers.tryParseEnum(parameters.get(4), Severity.class, INVALID_SEVERITY);
+        steps = parameters.get(5);
+        stepsToReproduce = Arrays.stream(steps.split(";")).toList();
     }
 }

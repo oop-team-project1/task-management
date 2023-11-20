@@ -40,8 +40,10 @@ public interface TaskManagementRepository
     Team createNewTeam(String name);
     Board createNewBoard(String name);
 
-    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce);
-    Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
+    Bug createNewBugWithMember(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce);
+    Bug createNewBugWithoutMember(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce);
+    Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
+    Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size, StoryStatus status);
     Feedback createNewFeedback(String title, String description, int rating);
 
     void addTeam(Team teamToAdd);

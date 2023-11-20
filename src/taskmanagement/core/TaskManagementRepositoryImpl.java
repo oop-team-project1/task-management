@@ -131,7 +131,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce)
+    public Bug createNewBugWithMember(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce)
     {
         Bug bug = new BugImpl(++id, title, description, assignee, priority, severity, stepsToReproduce);
         this.tasks.add(bug);
@@ -140,12 +140,25 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Story createNewStory(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status) {
-        // checking if member exists is done in the command;
-        // TODO think if we can create it without member in constructor
-        Story story = new StoryImpl(++id,title,description,priority,size,assignee,status);
+    public Bug createNewBugWithoutMember(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce)
+    {
+        Bug bug = new BugImpl(++id, title, description, priority, severity, stepsToReproduce);
+        this.tasks.add(bug);
+        return bug;
+    }
+
+    @Override
+    public Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status) {
+        Story story = new StoryImpl(++id,title,description,priority,size,assignee);
         this.tasks.add(story);
         findMemberByName(assignee.getName()).addTask(story);
+        return story;
+    }
+
+    @Override
+    public Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size, StoryStatus status) {
+        Story story = new StoryImpl(++id,title,description,priority,size);
+        this.tasks.add(story);
         return story;
     }
 

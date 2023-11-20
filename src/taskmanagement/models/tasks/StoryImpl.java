@@ -30,21 +30,17 @@ public class StoryImpl extends TaskImpl implements Story {
     //TODO Implement in parent class with LogEvents
 
 
-    public StoryImpl(int id, String title, String description, Priority priority, Size size, Member assignee, StoryStatus status) {
+    public StoryImpl(int id, String title, String description, Priority priority, Size size) {
         super(id, title, description);
         this.priority = priority;
         this.size = size;
-        this.status = status;
-        this.assignee = assignee;
+        this.status = StoryStatus.NOT_DONE;
 
     }
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size, Member assignee) {
-        super(id, title, description);
-        this.priority = priority;
-        this.size = size;
-        this.assignee = assignee;
-
+        this(id, title, description, priority, size);
+        setAssignee(assignee);
     }
 
 
@@ -124,7 +120,6 @@ public class StoryImpl extends TaskImpl implements Story {
             throw new IllegalArgumentException(
                     String.format(PRIORITY_CHANGE_ERR, priority));
         }
-        logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
-        this.status = newStatus;
+        setStatus(newStatus);
     }
 }

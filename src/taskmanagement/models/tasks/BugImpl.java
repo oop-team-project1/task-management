@@ -30,25 +30,20 @@ public class BugImpl extends TaskImpl implements Bug {
     private Priority priority;
     private Severity severity;
     private List<String> stepsToReproduce;
-    private boolean isAssigned = true;
+    private boolean isAssigned = false;
 
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce) {
+    public BugImpl(int id, String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce) {
         super(id, title, description);
-        this.assignee = assignee;
         this.priority = priority;
         this.severity = severity;
         setStepsToReproduce(stepsToReproduce);
         this.status = BugStatus.ACTIVE;
-
     }
 
-
-
-
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, BugStatus status, List<String> stepsToReproduce) {
-        this(id, title, description, assignee, priority, severity,stepsToReproduce);
-        this.status = status;
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce) {
+        this(id, title, description, priority, severity, stepsToReproduce);
+        setAssignee(assignee);
     }
 
     // TODO return copy
@@ -66,6 +61,7 @@ public class BugImpl extends TaskImpl implements Bug {
     @Override
     public void setAssignee(Member member)
     {
+        //TODO write message
         if (isAssigned) {
             throw new IllegalArgumentException();
         }

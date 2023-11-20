@@ -7,7 +7,6 @@ import taskmanagement.models.BoardImpl;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.bug.Status;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
@@ -53,7 +52,7 @@ public class CreateStory implements Command {
         board = taskManagementRepository.findBoardByName(boardName);
         member = taskManagementRepository.findMemberByName(memberName);
 
-        Story createStory = taskManagementRepository.createNewStory(title, description, priority, size, member,status);
+        Story createStory = taskManagementRepository.createNewStoryWithMember(title, description, priority, size, member,status);
 
         return String.format(CommandsConstants.STORY_CREATED_MESSAGE, createStory.getId());
     }
