@@ -56,7 +56,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
                 String.valueOf(Severity.CRITICAL),
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -70,7 +71,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
                 String.valueOf(Severity.CRITICAL),
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -84,7 +86,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
                 String.valueOf(Severity.CRITICAL),
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -98,7 +101,8 @@ public class CreateNewBugInBoardTest
                 INVALID_TEXT,
                 String.valueOf(Priority.LOW),
                 String.valueOf(Severity.CRITICAL),
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -112,7 +116,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 INVALID_TEXT,
                 String.valueOf(Severity.CRITICAL),
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -126,7 +131,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
                 INVALID_TEXT,
-                String.valueOf(BugStatus.DONE));
+                String.valueOf(BugStatus.DONE),
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -140,7 +146,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
                 String.valueOf(Severity.CRITICAL),
-                INVALID_TEXT);
+                INVALID_TEXT,
+                TestHelpers.getString(5));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
@@ -153,7 +160,8 @@ public class CreateNewBugInBoardTest
                 VALID_BUG_DESCRIPTION,
                 VALID_BUG_ASSIGNEE_NAME,
                 String.valueOf(Priority.LOW),
-                String.valueOf(Severity.CRITICAL));
+                String.valueOf(Severity.CRITICAL),
+                TestHelpers.getString(5));
 
         Board board = new BoardImpl(VALID_BOARD_NAME);
         Member member = new MemberImpl(VALID_BUG_ASSIGNEE_NAME);
