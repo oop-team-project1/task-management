@@ -17,4 +17,8 @@ public class CommandsConstants {
     public static final String BUG_STATUS_CHANGED_MESSAGE = "Status of bug with id %d was changed to %s.";
     public static final String MEMBER_UNASSIGNED = "Person with name %s was unassigned from task with id %d.";
     public static final String MEMBER_ASSIGNED = "Person with name %s was assigned to task with id %d.";
+
+    public static final String STATUS_ADVANCED = "Status of task with id %d has advanced to %s";
+    public static final String STATUS_REVERTED = "Status of task with id %d has advanced to %s";
+
 }
