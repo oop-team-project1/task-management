@@ -2,12 +2,11 @@ package taskmanagement.models.tasks;
 
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Bug;
+import taskmanagement.models.tasks.contracts.GenericStatus;
+import taskmanagement.models.tasks.contracts.Prioritizable;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
 
@@ -23,34 +22,26 @@ public class BugImpl extends TaskImpl implements Bug {
             "Status already set to %s." +
             "If you still wish to change it, please provide a valid value";
 
-
     private Member assignee;
     private BugStatus status;
     private Priority priority;
     private Severity severity;
-    private List<String> stepsToReproduce;
     private boolean isAssigned = true;
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce) {
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
         super(id, title, description);
         this.assignee = assignee;
         this.priority = priority;
         this.severity = severity;
         this.status = BugStatus.ACTIVE;
-        setStepsToReproduce(stepsToReproduce);
 
     }
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, BugStatus status,List<String> stepsToReproduce ) {
-        this(id, title, description, assignee, priority, severity,stepsToReproduce);
+
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity, BugStatus status) {
+        this(id, title, description, assignee, priority, severity);
         this.status = status;
     }
-
-    private void setStepsToReproduce(List<String> stepsToReproduce) {
-        if(stepsToReproduce.isEmpty()) throw new IllegalArgumentException("List of steps to reproduce the bug can't be empty!");
-        this.stepsToReproduce = new ArrayList<>(stepsToReproduce);
-    }
-
 
     // TODO return copy
     @Override
@@ -132,23 +123,4 @@ public class BugImpl extends TaskImpl implements Bug {
 
     }
 
-    @Override
-    public void revertStatus() {
-        if(status==BugStatus.ACTIVE){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
-        logEvent(String.format("Status changed from %s to %s", this.status, BugStatus.ACTIVE));
-        status = BugStatus.ACTIVE;
-    }
-
-    @Override
-    public String currentStatus() {
-        return status.toString();
-    }
-
-    @Override
-    public void advanceStatus() {
-        if(status==BugStatus.DONE){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
-        logEvent(String.format("Status changed from %s to %s", this.status, BugStatus.ACTIVE));
-        status = BugStatus.ACTIVE;
-
-    }
 }

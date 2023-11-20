@@ -17,12 +17,12 @@ import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
-import java.util.Arrays;
+import javax.swing.*;
 import java.util.List;
 
 public class CreateNewBugInBoard implements Command
 {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 7;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
     private static final String INVALID_PRIORITY = "Invalid priority type!";
     private static final String INVALID_SEVERITY = "Invalid severity type!";
     private final TaskManagementRepository taskManagementRepository;
@@ -38,28 +38,21 @@ public class CreateNewBugInBoard implements Command
     private Priority priority;
     private Severity severity;
 
-    private String steps;
-
-    List<String> stepsAsList;
-
-
     public CreateNewBugInBoard(TaskManagementRepository taskManagementRepository)
     {
         this.taskManagementRepository = taskManagementRepository;
     }
 
     @Override
-    public String execute(List<String> parameters){
-
-       for (String param:parameters) System.out.println(param);
+    public String execute(List<String> parameters)
+    {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         parseParameters(parameters);
-
 
         board = taskManagementRepository.findBoardByName(boardName);
         member = taskManagementRepository.findMemberByName(memberName);
 
-        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity, stepsAsList);
+        Bug createBug = taskManagementRepository.createNewBug(title, description, member, priority, severity);
 
         return String.format(CommandsConstants.BUG_CREATED_MESSAGE, createBug.getId());
     }
@@ -76,9 +69,6 @@ public class CreateNewBugInBoard implements Command
         memberName = parameters.get(3);
         priority = ParsingHelpers.tryParseEnum(parameters.get(4), Priority.class, INVALID_PRIORITY);
         severity = ParsingHelpers.tryParseEnum(parameters.get(5), Severity.class, INVALID_SEVERITY);
-        steps = parameters.get(6);
-        stepsAsList = Arrays.asList(steps.split(";"));
-
 
     }
 }
