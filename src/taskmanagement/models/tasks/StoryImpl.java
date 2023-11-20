@@ -6,6 +6,7 @@ import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.GenericStatus;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
+import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 
@@ -126,5 +127,22 @@ public class StoryImpl extends TaskImpl implements Story {
         }
         logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
         this.status = newStatus;
+    }
+
+    @Override
+    public void revertStatus() {
+        if(status == StoryStatus.NOT_DONE){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
+       setStatus(StoryStatus.values()[status.ordinal()-1]);
+    }
+
+    @Override
+    public void advanceStatus() {
+        if(status == StoryStatus.DONE){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
+        setStatus(StoryStatus.values()[status.ordinal()+1]);
+
+    }
+    @Override
+    public String currentStatus() {
+        return status.toString();
     }
 }
