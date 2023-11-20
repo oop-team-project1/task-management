@@ -66,6 +66,22 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         setStatus(status);
     }
 
+    @Override
+    public void revertStatus() {
+        if(status == FeedbackStatus.NEW){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
+        setStatus(FeedbackStatus.values()[status.ordinal()-1]);
+    }
+
+    @Override
+    public void advanceStatus() {
+        if(status == FeedbackStatus.DONE){ throw new IllegalArgumentException(String.format(STATUS_DUPLICATION_ERR,status));}
+        setStatus(FeedbackStatus.values()[status.ordinal()+1]);
+
+    }
+    @Override
+    public String currentStatus() {
+        return status.toString();
+    }
 
     @Override
     public void changeRating(int rating) {
