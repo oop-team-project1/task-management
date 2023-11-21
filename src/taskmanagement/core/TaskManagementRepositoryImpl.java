@@ -162,12 +162,13 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         return bug;
     }
 
+
     @Override
-    public Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee) {
-        Story story = new StoryImpl(++id,title,description,priority,size,assignee);
+    public Story createNewStoryWithMember(String title, String description,Member member, Priority priority, Size size) {
+        Story story = new StoryImpl(++id,title,description, priority,size, member);
         tasks.add(story);
         stories.add(story);
-        findMemberByName(assignee.getName()).addTask(story);
+        findMemberByName(member.getName()).addTask(story);
         return story;
     }
 
