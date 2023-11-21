@@ -1,13 +1,12 @@
 package taskmanagement.models;
 
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class MemberImpl implements Member {
 
@@ -17,8 +16,8 @@ public class MemberImpl implements Member {
     public static final String NO_SUCH_TASK_ERR = "Member %s has not been assigned task with id %d!";
     private static final String REMOVE_TASK_FROM_LIST = "Task with id %d has been unassigned from member %s";
     private String name;
-    private List<Task> tasks;
-    private List<String> activityHistory;
+    private final List<Task> tasks;
+    private final List<String> activityHistory;
 
     public MemberImpl(String name) {
         setName(name);
@@ -26,7 +25,7 @@ public class MemberImpl implements Member {
         activityHistory = new ArrayList<>();
     }
 
-    private void setName(String name){
+    private void setName(String name) {
         ValidationHelper.validateStringLength(name,
                 TeamImpl.NAME_LEN_MIN,
                 TeamImpl.NAME_LEN_MAX,
@@ -65,7 +64,7 @@ public class MemberImpl implements Member {
     @Override
     public void removeTask(Task task) {
         // double check, to not rely on execution order in the command UnassignBug
-        if(!tasks.contains(task)) throw new IllegalArgumentException(String.format(
+        if (!tasks.contains(task)) throw new IllegalArgumentException(String.format(
                 NO_SUCH_TASK_ERR, this.name, task.getId()));
         tasks.remove(task);
         String message = String.format(REMOVE_TASK_FROM_LIST, task.getId(), name);
@@ -76,7 +75,7 @@ public class MemberImpl implements Member {
     public String viewActivity() {
         StringBuilder result = new StringBuilder(String.format(HISTORY_MESSAGE, getName()));
         result.append(System.lineSeparator());
-        for(String activity : activityHistory) {
+        for (String activity : activityHistory) {
             result.append(activity).append(System.lineSeparator());
         }
 
