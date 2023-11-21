@@ -26,12 +26,12 @@ public class CreateFeedbackInBoardTest {
     private Command command;
     private TaskManagementRepository taskManagementRepository;
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
-    private static final String VALID_FEEDBACK_TITLE = TestHelpers.getString(11);
+    public static final String VALID_FEEDBACK_TITLE = TestHelpers.getString(11);
     private static final String INVALID_FEEDBACK_TITLE = TestHelpers.getString(9);
-    private static final String VALID_FEEDBACK_DESCRIPTION = TestHelpers.getString(11);
+    public static final String VALID_FEEDBACK_DESCRIPTION = TestHelpers.getString(11);
     private static final String INVALID_FEEDBACK_DESCRIPTION = TestHelpers.getString(9);
 
-    private static final String VALID_RATING = "2";
+    public static final String VALID_RATING = "2";
     private static final String INVALID_RATING = "0";
     @BeforeEach
     public void setUp() {
