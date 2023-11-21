@@ -21,4 +21,6 @@ public interface Task extends Identifiable, Commentable{
 
     public void removeComment(Comment comment);
 
+    String showComments();
+
 }

@@ -18,7 +18,7 @@ public abstract class TaskImpl implements Task {
     private final int MIN_DESCRIPTION_LENGTH = 10;
     private final int MAX_DESCRIPTION_LENGTH = 100;
     private final String DESCRIPTION_LENGTH_ERROR = String.format("Description should be between %d and %d symbols!", MIN_DESCRIPTION_LENGTH, MAX_DESCRIPTION_LENGTH);
-
+    public static final String HISTORY_MESSAGE = "Comments on task with id %d";
     private final int id;
     private String title;
     private String description;
@@ -91,6 +91,18 @@ public abstract class TaskImpl implements Task {
     @Override
     public void removeComment(Comment comment){
         comments.remove(comment);
+    }
+
+    @Override
+    public String showComments()
+    {
+        StringBuilder result = new StringBuilder(String.format(HISTORY_MESSAGE, getId()));
+        result.append(System.lineSeparator());
+        for(Comment comment : comments) {
+            result.append(comment.toString()).append(System.lineSeparator());
+        }
+
+        return result.toString();
     }
 
     //TODO Write toString method

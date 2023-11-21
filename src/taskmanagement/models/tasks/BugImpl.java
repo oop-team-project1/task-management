@@ -24,6 +24,9 @@ public class BugImpl extends TaskImpl implements Bug {
     public static final String STATUS_CHANGE_ERR =
             "Status already set to %s." +
             "If you still wish to change it, please provide a valid value";
+    public static final String BUG_ASSIGNED_ERR =
+            "This bug is already assigned to %s!\n" +
+            "If you are sure you wish to assign it to %s, please unassign it first by using the command UnassignBug %d %s";
 
     private Member assignee;
     private BugStatus status;
@@ -63,7 +66,8 @@ public class BugImpl extends TaskImpl implements Bug {
     {
         //TODO write message
         if (isAssigned) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    String.format(BUG_ASSIGNED_ERR, assignee,member.getName(),getId(),assignee));
         }
         assignee = member;
         isAssigned = true;
