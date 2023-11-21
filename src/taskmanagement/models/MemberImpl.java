@@ -62,8 +62,8 @@ public class MemberImpl implements Member {
     @Override
     public void removeTask(Task task) {
         // double check, to not rely on execution order in the command UnassignBug
-        if(!tasks.contains(task)) throw new IllegalArgumentException(
-                NO_SUCH_TASK_ERR);
+        if(!tasks.contains(task)) throw new IllegalArgumentException(String.format(
+                NO_SUCH_TASK_ERR, this.name, task.getId()));
         tasks.remove(task);
     }
 
