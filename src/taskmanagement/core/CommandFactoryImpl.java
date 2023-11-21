@@ -5,10 +5,7 @@ import taskmanagement.commands.contracts.Command;
 import taskmanagement.commands.creation.*;
 import taskmanagement.commands.enums.CommandType;
 import taskmanagement.commands.listing.*;
-import taskmanagement.commands.modifying.AddCommentToTask;
-import taskmanagement.commands.modifying.AddPersonToTeam;
-import taskmanagement.commands.modifying.AssignTask;
-import taskmanagement.commands.modifying.UnassignTask;
+import taskmanagement.commands.modifying.*;
 import taskmanagement.core.contracts.CommandFactory;
 import taskmanagement.core.contracts.TaskManagementRepository;
 
@@ -62,12 +59,16 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeFeedbackRating(repository);
             case CREATEBOARD:
                 return new CreateBoardInATeam(repository);
-            case ASSIGNTASKTOPERSON:
-                new AssignTask(repository);
-            case UNASSIGNTASKTOPERSON:
-                new UnassignTask(repository);
             case ADDCOMMENTTOTASK:
                 new AddCommentToTask(repository);
+            case ASSIGNBUG:
+                new AssignBug(repository);
+            case UNASSIGNBUG:
+                new UnassignBug(repository);
+            case ASSIGNSTORY:
+                new AssignStory(repository);
+            case UNASSIGNSTORY:
+                new UnassignStory(repository);
             case LISTALLTASKS:
                 return null;
             case LISTBUGS:
