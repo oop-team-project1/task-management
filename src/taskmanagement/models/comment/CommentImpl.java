@@ -35,5 +35,12 @@ public class CommentImpl implements  Comment
     {
         this.content = content;
     }
-
+    @Override
+    public String toString()
+    {
+        return String.format("----------%n" +
+                "%s%n" +
+                "User: %s%n" +
+                "----------%n", getContent(), getAuthor());
+    }
 }
