@@ -1,7 +1,7 @@
 package taskmanagement.models;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Task;
