@@ -64,7 +64,7 @@ public class TaskManagementEngineImpl implements Engine
 
     private List<String> extractCommandParameters(String inputLine)
     {
-        String[] commandParts = inputLine.split(" ");
+        String[] commandParts = inputLine.split(" --");
         List<String> parameters = new ArrayList<>();
         for (int i = 1; i < commandParts.length; i++) {
             parameters.add(commandParts[i]);
