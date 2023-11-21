@@ -9,21 +9,20 @@ import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.tasks.FeedbackImpl;
 import taskmanagement.models.tasks.contracts.Feedback;
-import taskmanagement.models.tasks.enums.feedback.FeedbackStatus;
 import taskmanagement.utils.TestHelpers;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ChangeFeedbackStatusTest {
+public class ChangeFeedbackRatingTest {
     private Command command;
     private TaskManagementRepository taskManagementRepository;
 
     @BeforeEach
     public void setUp() {
         this.taskManagementRepository = new TaskManagementRepositoryImpl();
-        this.command = new ChangeFeedbackStatus(taskManagementRepository);
+        this.command = new ChangeFeedbackRating(taskManagementRepository);
     }
 
     @Test
@@ -32,9 +31,10 @@ public class ChangeFeedbackStatusTest {
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
+
     @Test
     public void should_ChangeFeedbackStatus_When_ArgumentsAreValid() {
-        List<String> params = List.of(String.valueOf(1), String.valueOf(FeedbackStatus.UNSCHEDULED));
+        List<String> params = List.of(String.valueOf(1), String.valueOf(3));
 
         Feedback feedback = new FeedbackImpl(1,
                 CreateFeedbackInBoardTest.VALID_FEEDBACK_TITLE,
@@ -46,7 +46,6 @@ public class ChangeFeedbackStatusTest {
 
         command.execute(params);
 
-        Assertions.assertEquals(FeedbackStatus.UNSCHEDULED, feedback.getStatus());
+        Assertions.assertEquals(3, feedback.getRating());
     }
-
 }
