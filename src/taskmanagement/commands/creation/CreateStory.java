@@ -16,16 +16,19 @@ import taskmanagement.models.tasks.enums.story.StoryStatus;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CreateStory implements Command {
 
     // TODO make a story with 1 argument less? Create story without member
 
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 7;
+    private static final int MAX_NUMBER_OF_ARGUMENTS = 6;
+    private static final int MIN_NUMBER_OF_ARGUMENTS = 5;
     private static final String INVALID_PRIORITY = "Invalid priority type!";
     private static final String INVALID_SIZE = "Invalid size type!";
     private static final String INVALID_STATUS = "Invalid status type!";
+    private static final String INVALID_ARGUMENTS_SIZE = "Invalid number of arguments!";
     private final TaskManagementRepository taskManagementRepository;
 
     private Board board;
@@ -38,7 +41,6 @@ public class CreateStory implements Command {
     private String memberName;
     private Priority priority;
     private Size size;
-    private StoryStatus status;
 
     public CreateStory(TaskManagementRepository taskManagementRepository) {
         this.taskManagementRepository = taskManagementRepository;
@@ -46,29 +48,46 @@ public class CreateStory implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        parseParameters(parameters);
+        ValidationHelper.validateValueInRange(parameters.size(), MIN_NUMBER_OF_ARGUMENTS, MAX_NUMBER_OF_ARGUMENTS, INVALID_ARGUMENTS_SIZE);
+        int parametersCount = parameters.size();
+        parseParameters(parameters, parametersCount);
 
         board = taskManagementRepository.findBoardByName(boardName);
-        member = taskManagementRepository.findMemberByName(memberName);
-
-        Story createStory = taskManagementRepository.createNewStoryWithMember(title, description, priority, size, member,status);
+        Story createStory;
+        if (parametersCount == MAX_NUMBER_OF_ARGUMENTS) {
+            member = taskManagementRepository.findMemberByName(memberName);
+            createStory = taskManagementRepository.createNewStoryWithMember(title, description, member, priority, size);
+        } else {
+            createStory = taskManagementRepository.createNewStoryWithoutMember(title, description, priority, size);
+        }
 
         return String.format(CommandsConstants.STORY_CREATED_MESSAGE, createStory.getId());
     }
 
-    private void parseParameters(List<String> parameters) {
+    private void parseParameters(List<String> parameters, int paramCount) {
 
+        if (paramCount == MAX_NUMBER_OF_ARGUMENTS) {
+            parseWithMember(parameters);
+        } else {
+            parseWithoutMember(parameters);
+        }
+    }
+
+    private void parseWithMember(List<String> parameters) {
         boardName = parameters.get(0);
-
-        //TODO why don't we use parser helpers for the title? or other fields? I can input something else
         title = parameters.get(1);
         description = parameters.get(2);
         memberName = parameters.get(3);
         priority = ParsingHelpers.tryParseEnum(parameters.get(4), Priority.class, INVALID_PRIORITY);
         size = ParsingHelpers.tryParseEnum(parameters.get(5), Size.class, INVALID_SIZE);
-        status = ParsingHelpers.tryParseEnum(parameters.get(6), StoryStatus.class, INVALID_STATUS);
+    }
 
+    private void parseWithoutMember(List<String> parameters) {
+        boardName = parameters.get(0);
+        title = parameters.get(1);
+        description = parameters.get(2);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(3), Priority.class, INVALID_PRIORITY);
+        size = ParsingHelpers.tryParseEnum(parameters.get(5), Size.class, INVALID_SIZE);
     }
 
 
