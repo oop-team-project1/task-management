@@ -1,7 +1,8 @@
 package taskmanagement.commands.creation;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -16,7 +17,7 @@ public class CreateFeedbackInBoardTest {
     private TaskManagementRepository taskManagementRepository;
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.taskManagementRepository = new TaskManagementRepositoryImpl();
