@@ -3,16 +3,14 @@ package taskmanagement.core.contracts;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
-import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Feedback;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
-import taskmanagement.models.tasks.enums.story.StoryStatus;
+
 
 import java.util.List;
 
@@ -36,13 +34,15 @@ public interface TaskManagementRepository {
 
     Story findStoryById(int id);
 
+    Story findStoryById(int id, String errorMessage);
+
     Task findTaskById(int id);
 
     Feedback findFeedbackById(int id);
 
     Bug findBugById(int id);
 
-    Bug findBugById(int id, String error);
+    Bug findBugById(int id, String errorMessage);
 
     Team createNewTeam(String name);
 
