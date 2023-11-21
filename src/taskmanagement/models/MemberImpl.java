@@ -48,6 +48,8 @@ public class MemberImpl implements Member {
         return new ArrayList<>(activityHistory);
     }
 
+
+    //TODO decide if members need two separate lists as well
     @Override
     public void addTask(Task task) {
         tasks.add(task);
