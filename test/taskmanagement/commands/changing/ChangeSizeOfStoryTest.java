@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
-import taskmanagement.models.MemberImpl;
-import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.StoryImpl;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
@@ -42,10 +40,9 @@ public class ChangeSizeOfStoryTest
     public void should_ChangeSizeOfStory_When_ArgumentsAreValid()
     {
         List<String> params = List.of(String.valueOf(1), String.valueOf(Size.SMALL));
-        Member member = new MemberImpl(TestHelpers.getString(5));
-        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE, member);
+        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE);
 
-        taskManagementRepository.addMember(member);
+        taskManagementRepository.addStory(story);
         taskManagementRepository.addTask(story);
 
         command.execute(params);

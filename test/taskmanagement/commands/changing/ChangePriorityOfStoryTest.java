@@ -4,17 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import taskmanagement.commands.contracts.Command;
-import taskmanagement.commands.modifying.AddCommentToTask;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
-import taskmanagement.models.MemberImpl;
-import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.StoryImpl;
 import taskmanagement.models.tasks.contracts.Story;
-import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.utils.TestHelpers;
 
@@ -47,10 +41,9 @@ public class ChangePriorityOfStoryTest
     public void should_ChangePriorityOfStory_When_ArgumentsAreValid()
     {
         List<String> params = List.of(String.valueOf(1), String.valueOf(Priority.LOW));
-        Member member = new MemberImpl(TestHelpers.getString(5));
-        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE, member);
+        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE);
 
-        taskManagementRepository.addMember(member);
+        taskManagementRepository.addStory(story);
         taskManagementRepository.addTask(story);
 
         command.execute(params);

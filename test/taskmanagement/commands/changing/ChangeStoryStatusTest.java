@@ -43,10 +43,9 @@ public class ChangeStoryStatusTest
     public void should_ChangeStoryStatus_When_ArgumentsAreValid()
     {
         List<String> params = List.of(String.valueOf(1), String.valueOf(StoryStatus.IN_PROGRESS));
-        Member member = new MemberImpl(TestHelpers.getString(5));
-        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE, member);
+        Story story = new StoryImpl(1,TestHelpers.getString(10), TestHelpers.getString(10), Priority.HIGH, Size.LARGE);
 
-        taskManagementRepository.addMember(member);
+        taskManagementRepository.addStory(story);
         taskManagementRepository.addTask(story);
 
         command.execute(params);
