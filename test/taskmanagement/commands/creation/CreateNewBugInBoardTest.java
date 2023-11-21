@@ -10,7 +10,6 @@ import taskmanagement.models.BoardImpl;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
@@ -42,7 +41,7 @@ public class CreateNewBugInBoardTest
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected()
     {
-        List<String> params = TestHelpers.getList(CreateNewBugInBoard.EXPECTED_NUMBER_OF_ARGUMENTS + 1);
+        List<String> params = TestHelpers.getList(CreateNewBugInBoard.MAX_NUMBER_OF_ARGUMENTS + 1);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(params));
     }
