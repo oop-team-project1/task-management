@@ -15,8 +15,10 @@ public class CommandsConstants {
     public static final String COMMENT_ADDED_TO_TASK = "Comment was added to task with id %d.";
     public static final String BUG_SEVERITY_CHANGED_MESSAGE = "Severity of bug with id %d was changed to %s";
     public static final String BUG_STATUS_CHANGED_MESSAGE = "Status of bug with id %d was changed to %s.";
-    public static final String MEMBER_UNASSIGNED = "Person with name %s was unassigned from task with id %d.";
-    public static final String MEMBER_ASSIGNED = "Person with name %s was assigned to task with id %d.";
+    public static final String MEMBER_UNASSIGNED_BUG = "Person with name %s was unassigned from bug with id %d.";
+    public static final String MEMBER_UNASSIGNED_STORY = "Person with name %s was unassigned from story with id %d.";
+    public static final String MEMBER_ASSIGNED_STORY = "Person with name %s was assigned to story with id %d.";
+    public static final String MEMBER_ASSIGNED_BUG = "Person with name %s was assigned to bug with id %d.";
     public static final String MEMBER_ADDED_TO_TEAM = "Person with name %s was added to team %s!";
 
 }
