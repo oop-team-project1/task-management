@@ -17,43 +17,63 @@ import taskmanagement.models.tasks.enums.story.StoryStatus;
 import java.util.List;
 
 
-public interface TaskManagementRepository
-{
+public interface TaskManagementRepository {
     List<Team> getTeams();
 
     List<Member> getMembers();
+
     List<Board> getBoards();
+
     List<Task> getTasks();
 
     Member createNewPerson(String name);
+
     Member findMemberByName(String personName);
+
     Board findBoardByName(String boardName);
+
     Team findTeamByName(String teamName);
+
     Story findStoryById(int id);
+
     Task findTaskById(int id);
 
     Feedback findFeedbackById(int id);
 
     Bug findBugById(int id);
 
+    Bug findBugById(int id, String error);
 
     Team createNewTeam(String name);
+
     Board createNewBoard(String name);
 
     Bug createNewBugWithMember(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce);
+
     Bug createNewBugWithoutMember(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce);
+
     Story createNewStoryWithMember(String title, String description, Member assignee, Priority priority, Size size);
+
     Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size);
+
     Feedback createNewFeedback(String title, String description, int rating);
 
     void addTeam(Team teamToAdd);
+
     void addMember(Member member);
+
     void addBoard(Board board);
+
     void addTask(Task task);
+
     void addBug(Bug bug);
+
     void addStory(Story story);
+
     void addFeedback(Feedback feedback);
+
     void addMemberToTeam(Member memberToAdd, Team team);
+
     void removeMemberFromTeam(Member memberToRemove, Team team);
 
 

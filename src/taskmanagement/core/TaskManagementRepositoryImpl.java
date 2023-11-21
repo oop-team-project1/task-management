@@ -106,6 +106,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     //TODO am not a fan of the casting, will get back to it to think if there is time
     @Override
     public Bug findBugById(int id) {return findElementById(getBugs(), id);}
+    @Override
+    public Bug findBugById(int id, String error) {return findElementById(getBugs(), id,error);}
 
     @Override
     public Task findTaskById(int id)
@@ -259,5 +261,16 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         }
 
         throw new ElementNotFoundException(String.format(ELEMENT_WITH_ID_NOT_FOUND_ERR, id));
+    }
+
+
+    private <T extends Identifiable> T findElementById(List<T> elements, int id, String message) {
+        for (T element : elements) {
+            if (element.getId() == id) {
+                return element;
+            }
+        }
+
+        throw new ElementNotFoundException(message);
     }
 }
