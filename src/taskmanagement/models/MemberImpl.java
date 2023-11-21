@@ -7,6 +7,7 @@ import taskmanagement.utils.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MemberImpl implements Member {
 
@@ -14,6 +15,7 @@ public class MemberImpl implements Member {
     public static final String ADD_TASK_TO_LIST = "Task %s added to member %s";
     public static final String HISTORY_MESSAGE = "Activity History on member %s";
     public static final String NO_SUCH_TASK_ERR = "Member %s has not been assigned task with id %d!";
+    private static final String REMOVE_TASK_FROM_LIST = "Task with id %d has been unassigned from member %s";
     private String name;
     private List<Task> tasks;
     private List<String> activityHistory;
@@ -51,6 +53,7 @@ public class MemberImpl implements Member {
 
 
     //TODO decide if members need two separate lists as well
+    //TODO think what should errors return, id or title. Make it equal in the whole program.
     @Override
     public void addTask(Task task) {
         tasks.add(task);
@@ -65,6 +68,8 @@ public class MemberImpl implements Member {
         if(!tasks.contains(task)) throw new IllegalArgumentException(String.format(
                 NO_SUCH_TASK_ERR, this.name, task.getId()));
         tasks.remove(task);
+        String message = String.format(REMOVE_TASK_FROM_LIST, task.getId(), name);
+        activityHistory.add(message);
     }
 
     @Override
