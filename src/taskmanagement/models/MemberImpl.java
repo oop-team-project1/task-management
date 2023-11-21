@@ -59,6 +59,14 @@ public class MemberImpl implements Member {
     }
 
     @Override
+    public void removeTask(Task task) {
+        // double check, to not rely on execution order in the command UnassignBug
+        if(!tasks.contains(task)) throw new IllegalArgumentException(
+                "Member %s has not been assigned task with id %d!");
+        tasks.remove(task);
+    }
+
+    @Override
     public String viewActivity() {
         StringBuilder result = new StringBuilder(String.format(HISTORY_MESSAGE, getName()));
         result.append(System.lineSeparator());
