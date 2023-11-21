@@ -9,10 +9,8 @@ import taskmanagement.models.contracts.*;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.FeedbackImpl;
 import taskmanagement.models.tasks.StoryImpl;
-import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.*;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
@@ -28,6 +26,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public static final String TEAM_EXISTS_ERR = "Team %s already exists!";
     public static final String MEMBER_EXISTS = "The member %s you are trying to add already exists!";
     private List<Team> teams;
+    private List<Bug> bugs;
+    private List<Feedback> feedbacks;
+    private List<Story> stories;
     private List<Member> members;
     private List<Board> boards;
     private List<Task> tasks;
@@ -41,6 +42,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         members = new ArrayList<>();
         boards = new ArrayList<>();
         tasks = new ArrayList<>();
+        bugs = new ArrayList<>();
+        stories = new ArrayList<>();
+        feedbacks = new ArrayList<>();
         id = 0;
     }
 
@@ -60,6 +64,17 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         return new ArrayList<>(tasks);
     }
 
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+
+    public List<Story> getStories() {
+        return new ArrayList<>(stories);
+    }
+    public List<Feedback> getFeedbacks() {
+        return new ArrayList<>(feedbacks);
+    }
 
 
     @Override
@@ -81,21 +96,21 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     @Override
     public Story findStoryById(int id)
     {
-        return (Story) this.findElementById(getTasks(), id);
+        return findElementById(getStories(), id);
     }
 
     @Override
     public Feedback findFeedbackById(int id) {
-        return (Feedback) this.findElementById(getTasks(), id);
+        return findElementById(getFeedbacks(), id);
     }
     //TODO am not a fan of the casting, will get back to it to think if there is time
     @Override
-    public Bug findBugById(int id) {return (Bug) this.findElementById(getTasks(), id);}
+    public Bug findBugById(int id) {return findElementById(getBugs(), id);}
 
     @Override
     public Task findTaskById(int id)
     {
-        return this.findElementById(getTasks(), id);
+        return findElementById(getTasks(), id);
     }
 
 
@@ -108,8 +123,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Member createNewPerson(String name)
     {
         Member person = new MemberImpl(name);
-        this.members.add(person);
-
+        members.add(person);
         return person;
     }
 
@@ -117,7 +131,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Team createNewTeam(String name) {
         Team team = new TeamImpl(name);
         teams.add(team);
-
         return team;
 
     }
@@ -126,7 +139,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Board createNewBoard(String name)
     {
         Board board = new BoardImpl(name);
-        this.boards.add(board);
+        boards.add(board);
         return board;
     }
 
@@ -134,7 +147,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Bug createNewBugWithMember(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce)
     {
         Bug bug = new BugImpl(++id, title, description, assignee, priority, severity, stepsToReproduce);
-        this.tasks.add(bug);
+        tasks.add(bug);
+        bugs.add(bug);
         findMemberByName(assignee.getName()).addTask(bug);
         return bug;
     }
@@ -143,30 +157,33 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Bug createNewBugWithoutMember(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce)
     {
         Bug bug = new BugImpl(++id, title, description, priority, severity, stepsToReproduce);
-        this.tasks.add(bug);
+        tasks.add(bug);
+        bugs.add(bug);
         return bug;
     }
 
     @Override
-    public Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status) {
+    public Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee) {
         Story story = new StoryImpl(++id,title,description,priority,size,assignee);
-        this.tasks.add(story);
+        tasks.add(story);
+        stories.add(story);
         findMemberByName(assignee.getName()).addTask(story);
         return story;
     }
 
     @Override
-    public Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size, StoryStatus status) {
+    public Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size) {
         Story story = new StoryImpl(++id,title,description,priority,size);
-        this.tasks.add(story);
+        tasks.add(story);
+        stories.add(story);
         return story;
     }
 
     @Override
     public Feedback createNewFeedback(String title, String description, int rating) {
         Feedback feedback = new FeedbackImpl(++id, title,description,rating);
-        //TODO: check the implementation
-        this.tasks.add(feedback);
+        tasks.add(feedback);
+        feedbacks.add(feedback);
         return feedback;
     }
 
@@ -193,6 +210,23 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         if (tasks.contains(task)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, task.getTitle()));
         tasks.add(task);
     }
+
+    @Override
+    public void addBug(Bug bug) {
+        if (bugs.contains(bug)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, bug.getTitle()));
+        bugs.add(bug);
+    }
+    @Override
+    public void addFeedback(Feedback feedback) {
+        if (feedbacks.contains(feedback)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, feedback.getTitle()));
+        feedbacks.add(feedback);
+    }
+    @Override
+    public void addStory(Story story) {
+        if (stories.contains(story)) throw new IllegalArgumentException(String.format(MEMBER_EXISTS, story.getTitle()));
+        stories.add(story);
+    }
+
 
     @Override
     public void addMemberToTeam(Member memberToAdd, Team team) {

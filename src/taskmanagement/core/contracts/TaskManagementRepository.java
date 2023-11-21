@@ -42,14 +42,17 @@ public interface TaskManagementRepository
 
     Bug createNewBugWithMember(String title, String description, Member assignee, Priority priority, Severity severity, List<String> stepsToReproduce);
     Bug createNewBugWithoutMember(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce);
-    Story createNewStoryWithMember(String title, String description, Priority priority, Size size, Member assignee, StoryStatus status);
-    Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size, StoryStatus status);
+    Story createNewStoryWithMember(String title, String description, Member assignee, Priority priority, Size size);
+    Story createNewStoryWithoutMember(String title, String description, Priority priority, Size size);
     Feedback createNewFeedback(String title, String description, int rating);
 
     void addTeam(Team teamToAdd);
     void addMember(Member member);
     void addBoard(Board board);
     void addTask(Task task);
+    void addBug(Bug bug);
+    void addStory(Story story);
+    void addFeedback(Feedback feedback);
     void addMemberToTeam(Member memberToAdd, Team team);
     void removeMemberFromTeam(Member memberToRemove, Team team);
 
