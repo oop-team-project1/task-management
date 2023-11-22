@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreateNewBugInBoardTest
 {
-    private static final String VALID_BUG_TITLE = TestHelpers.getString(10);
-    private static final String VALID_BUG_DESCRIPTION = TestHelpers.getString(10);
-    private static final String VALID_BUG_ASSIGNEE_NAME = TestHelpers.getString(5);
-    private static final String VALID_BOARD_NAME = TestHelpers.getString(5);
+    public static final String VALID_BUG_TITLE = TestHelpers.getString(10);
+    public static final String VALID_BUG_DESCRIPTION = TestHelpers.getString(10);
+    public static final String VALID_BUG_ASSIGNEE_NAME = TestHelpers.getString(5);
+    public static final String VALID_BOARD_NAME = TestHelpers.getString(5);
     private static final String INVALID_TEXT = TestHelpers.getString(3);
 
 
