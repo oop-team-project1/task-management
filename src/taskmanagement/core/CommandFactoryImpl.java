@@ -20,6 +20,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllPeople(repository);
             case SHOWPERSONACTIVITY:
                 return new ShowPersonActivity(repository);
+            case SHOWTEAMACTIVITY:
+                return new ShowTeamActivity(repository);
             case SHOWBOARDACTIVITY:
                 return new ShowBoardActivity(repository);
             case CREATENEWPERSON:

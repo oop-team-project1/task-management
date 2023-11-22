@@ -120,6 +120,7 @@ public class BugImpl extends TaskImpl implements Bug {
         return severity;
     }
 
+
     @Override
     public void changeSeverity(Severity newSeverity) {
         if (this.severity == newSeverity) {
@@ -134,6 +135,13 @@ public class BugImpl extends TaskImpl implements Bug {
     private void setStepsToReproduce(List<String> stepsToReproduce) {
         if(stepsToReproduce.isEmpty()) throw new IllegalArgumentException("List of steps to reproduce the bug can't be empty!");
         this.stepsToReproduce = new ArrayList<>(stepsToReproduce);
+    }
+    private String printSteps(List<String> stepsToReproduce){
+        StringBuilder result = new StringBuilder();
+        for(String steps : stepsToReproduce) {
+            result.append(steps).append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 
 }
