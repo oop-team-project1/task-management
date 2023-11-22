@@ -8,6 +8,7 @@ import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.BoardImplTest;
 import taskmanagement.models.TeamImpl;
+import taskmanagement.models.contracts.Team;
 import taskmanagement.utils.TestHelpers;
 
 import java.util.List;
@@ -22,9 +23,8 @@ public class CreateBoardInATeamTest {
     @BeforeEach
     public void setUp() {
         this.taskManagementRepository = new TaskManagementRepositoryImpl();
-        this.command = new CreateNewPerson(taskManagementRepository);
+        this.command = new CreateBoardInATeam(taskManagementRepository);
     }
-    //TODO opravi celiq test
 
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected() {
@@ -39,6 +39,9 @@ public class CreateBoardInATeamTest {
                 TestHelpers.getString(TeamImpl.NAME_LEN_MIN+1),
                 BoardImplTest.VALID_BOARD_NAME
         );
+        Team team = new TeamImpl(TestHelpers.getString(TeamImpl.NAME_LEN_MIN+1));
+
+        taskManagementRepository.addTeam(team);
 
         command.execute(params);
 
