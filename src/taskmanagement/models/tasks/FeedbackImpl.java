@@ -70,6 +70,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     @Override
     public void changeRating(int rating) {
+        int currentRating = this.getRating();
         setRating(rating);
+        logEvent(String.format("Rating changed from %d to %d", currentRating, rating));
     }
 }
