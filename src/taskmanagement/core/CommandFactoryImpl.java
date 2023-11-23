@@ -5,6 +5,7 @@ import taskmanagement.commands.contracts.Command;
 import taskmanagement.commands.creation.*;
 import taskmanagement.commands.enums.CommandType;
 import taskmanagement.commands.listing.*;
+import taskmanagement.commands.listing.sorting.SortBugsByTitle;
 import taskmanagement.commands.modifying.*;
 import taskmanagement.core.contracts.CommandFactory;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -80,6 +81,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return null;
             case LISTTASKWITHASSIGNEE:
                 return null;
+            case SORTBUGSBYTITLE:
+                new SortBugsByTitle(repository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
         }

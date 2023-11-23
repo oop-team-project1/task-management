@@ -23,6 +23,7 @@ public interface TaskManagementRepository {
     List<Board> getBoards();
 
     List<Task> getTasks();
+    List<Bug> getBugs();
 
     Member createNewPerson(String name);
 
