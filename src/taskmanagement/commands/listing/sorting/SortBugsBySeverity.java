@@ -8,27 +8,27 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SortBugsByPriority implements Command {
+public class SortBugsBySeverity implements Command {
     private List<Bug> bugs;
-    public SortBugsByPriority(TaskManagementRepository taskManagementRepository) {
+
+    public SortBugsBySeverity(TaskManagementRepository taskManagementRepository) {
         bugs = taskManagementRepository.getBugs();
     }
-
     @Override
     public String execute(List<String> parameters) {
         if(bugs.isEmpty()) {
             return SortBugsByTitle.BUG_SORT_TITLE_ERR_MSG;
         }
-        return sortAllBugsByPriority();
+        return sortAllBugsBySeverity();
     }
 
-    private String sortAllBugsByPriority() {
-        String sortedPriorities = bugs
+    private String sortAllBugsBySeverity() {
+        String sortedSeverity = bugs
                 .stream()
-                .sorted(Comparator.comparing(Bug::getPriority))
-                .map(Bug::getPriority)
+                .sorted(Comparator.comparing(Bug::getSeverity))
+                .map(Bug::getSeverity)
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
-        return sortedPriorities;
+        return sortedSeverity;
     }
 }
