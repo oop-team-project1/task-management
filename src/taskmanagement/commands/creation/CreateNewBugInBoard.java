@@ -17,17 +17,15 @@ import java.util.List;
 public class CreateNewBugInBoard implements Command
 {
     public static final int MAX_NUMBER_OF_ARGUMENTS = 7;
-    public static final int MIN_NUMBER_OF_ARGUMENTS = 7;
-    private static final String INVALID_PRIORITY = "Invalid priority type!";
-    private static final String INVALID_SEVERITY = "Invalid severity type!";
-    private static final String INVALID_ARGUMENTS_SIZE = "Invalid number of arguments!";
+    public static final int MIN_NUMBER_OF_ARGUMENTS = 6;
+    public static final String INVALID_PRIORITY = "Invalid priority type!";
+    public static final String INVALID_SEVERITY = "Invalid severity type!";
+    public static final String INVALID_ARGUMENTS_SIZE = "Invalid number of arguments!";
     private final TaskManagementRepository taskManagementRepository;
 
     private Board board;
     private Member member;
-
     private String boardName;
-
     private String title;
     private String description;
     private String memberName;
