@@ -28,15 +28,16 @@ public class ChangeFeedbackStatus implements Command {
         parseParameters(parameters);
 
         Feedback feedback = taskManagementRepository.findFeedbackById(feedbackId);
+        String prevStatus = feedback.getStatus().toString();
         feedback.changeStatus(status);
+        String newStatus = feedback.getStatus().toString();
 
-        return String.format(CommandsConstants.FEEDBACK_STATUS_CHANGED_MESSAGE, feedback.getId());
+        return String.format(CommandsConstants.FEEDBACK_STATUS_CHANGED_MESSAGE, feedback.getId(), prevStatus,newStatus);
     }
 
     private void parseParameters(List<String> parameters) {
         feedbackId = ParsingHelpers.tryParseInteger(parameters.get(0), "feedback id");
         status = ParsingHelpers.tryParseFeedbackStatus(parameters.get(1));
-                //tryParseEnum(parameters.get(1), status.getDeclaringClass(), ERROR_MESSAGE);
     }
 
 }

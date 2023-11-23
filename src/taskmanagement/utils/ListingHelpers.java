@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ListingHelpers {
 
-    public static final String JOIN_DELIMITER = "####################";
+   // public static final String JOIN_DELIMITER = "####################";
 
     public static <T extends Printable> String elementsToString(List<T> elements) {
         List<String> result = new ArrayList<>();
@@ -15,6 +15,6 @@ public class ListingHelpers {
             result.add(element.print());
         }
 
-        return String.join(JOIN_DELIMITER + System.lineSeparator(), result).trim();
+        return String.join( System.lineSeparator(), result).trim();
     }
 }
