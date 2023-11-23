@@ -11,8 +11,8 @@ import java.util.List;
 public class MemberImpl implements Member {
 
     public static final String NAME_LENGTH_ERR = "Member name must be between %s and %s characters long!";
-    public static final String ADD_TASK_TO_LIST = "Task %s added to member %s";
-    public static final String HISTORY_MESSAGE = "Activity History on member %s";
+    public static final String ADD_TASK_TO_LIST = "Task %s added to member %s.";
+    public static final String HISTORY_MESSAGE = "Activity History on member %s:";
     public static final String NO_SUCH_TASK_ERR = "Member %s has not been assigned task with id %d!";
     private static final String REMOVE_TASK_FROM_LIST = "Task with id %d has been unassigned from member %s";
     private String name;
@@ -85,7 +85,7 @@ public class MemberImpl implements Member {
     @Override
     public String print() {
         StringBuilder result = new StringBuilder();
-        result.append(getName()).append(System.lineSeparator());
+        result.append(getName());
         return result.toString();
     }
 
