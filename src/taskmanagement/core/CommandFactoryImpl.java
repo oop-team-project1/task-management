@@ -5,10 +5,7 @@ import taskmanagement.commands.contracts.Command;
 import taskmanagement.commands.creation.*;
 import taskmanagement.commands.enums.CommandType;
 import taskmanagement.commands.listing.*;
-import taskmanagement.commands.listing.sorting.SortBugsByPriority;
-import taskmanagement.commands.listing.sorting.SortBugsByTitle;
-import taskmanagement.commands.listing.sorting.SortFeedbacksByTitle;
-import taskmanagement.commands.listing.sorting.SortStoriesByTitle;
+import taskmanagement.commands.listing.sorting.*;
 import taskmanagement.commands.modifying.*;
 import taskmanagement.core.contracts.CommandFactory;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -92,6 +89,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 new SortStoriesByTitle(repository);
             case SORTBUGSBYPRIORITY:
                 new SortBugsByPriority(repository);
+            case SORTSTORIESBYPRIORITY:
+                new SortStoriesByPriority(repository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
         }

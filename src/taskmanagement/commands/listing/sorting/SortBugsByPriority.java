@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class SortBugsByPriority implements Command {
     private List<Bug> bugs;
     public SortBugsByPriority(TaskManagementRepository taskManagementRepository) {
-        taskManagementRepository.getBugs();
+        bugs = taskManagementRepository.getBugs();
     }
 
     @Override
