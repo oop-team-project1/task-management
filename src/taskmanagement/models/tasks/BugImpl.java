@@ -27,6 +27,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public static final String BUG_ASSIGNED_ERR =
             "This bug is already assigned to %s!\n" +
             "If you are sure you wish to assign it to %s, please unassign it first by using the command UnassignBug %d %s";
+    public static final String MEMBER_NOT_ASSIGNED_ERR = "Member %s is not assigned to this task therefore can't be unassigned!";
 
     private Member assignee;
     private BugStatus status;
@@ -79,10 +80,12 @@ public class BugImpl extends TaskImpl implements Bug {
         //TODO overwrite equals in member
 
         if (!assignee.equals(member)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MEMBER_NOT_ASSIGNED_ERR);
         }
+        logEvent(String.format("Member %s was unassigned from this task", assignee));
         assignee = null;
         isAssigned = false;
+
     }
 
     public Priority getPriority() {

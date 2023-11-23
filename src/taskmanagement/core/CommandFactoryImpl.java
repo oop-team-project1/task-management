@@ -41,7 +41,6 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATENEWASSIGNEDSTORY:
                 return new CreateStory(repository);
             case CREATENEWFEEDBACK:
-            case CREATENEWASSIGNEDFEEDBACK:
                 return new CreateFeedbackInBoard(repository);
             case CHANGEBUGSTATUS:
                 return new ChangeBugStatus(repository);
