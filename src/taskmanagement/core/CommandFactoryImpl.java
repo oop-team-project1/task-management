@@ -7,6 +7,7 @@ import taskmanagement.commands.enums.CommandType;
 import taskmanagement.commands.listing.*;
 import taskmanagement.commands.listing.sorting.SortBugsByTitle;
 import taskmanagement.commands.listing.sorting.SortFeedbacksByTitle;
+import taskmanagement.commands.listing.sorting.SortStoriesByTitle;
 import taskmanagement.commands.modifying.*;
 import taskmanagement.core.contracts.CommandFactory;
 import taskmanagement.core.contracts.TaskManagementRepository;
@@ -86,6 +87,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 new SortBugsByTitle(repository);
             case SORTFEEDBACKSBYTITLE:
                 new SortFeedbacksByTitle(repository);
+            case SORTSTORIESBYTITLE:
+                new SortStoriesByTitle(repository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
         }
