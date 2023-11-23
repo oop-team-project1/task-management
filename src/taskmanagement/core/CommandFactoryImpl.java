@@ -95,6 +95,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 new SortBugsBySeverity(repository);
             case SORTSTORIESBYSIZE:
                 new SortStoriesBySize(repository);
+            case SORTFEEDBACKSBYRATING:
+                new SortFeedbacksByRating(repository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
         }
