@@ -23,4 +23,6 @@ public interface Task extends Identifiable, Commentable{
 
     String showComments();
 
+    String print();
+
 }

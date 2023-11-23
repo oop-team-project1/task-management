@@ -105,6 +105,15 @@ public abstract class TaskImpl implements Task {
         return result.toString();
     }
 
+    @Override
+    public String print()
+    {
+        StringBuilder result = new StringBuilder();
+        result.append(getId()).append(" ").append(getTitle());
+        result.append(getDescription());
+        return result.toString();
+    }
+
     //TODO Write toString method
 
 

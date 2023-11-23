@@ -22,7 +22,7 @@ public class ListAllTasks implements Command
         tasks = taskManagementRepository.getTasks();
     }
 
-    // parameters: <filter> <title> or <sort>
+    // parameters: <filter> + <title> / <sort>
     @Override
     public String execute(List<String> parameters)
     {
@@ -34,19 +34,11 @@ public class ListAllTasks implements Command
         if (parameters.get(0).equals("filter"))
         {
             String title = parameters.get(1);
-            StringBuilder stringBuilder = new StringBuilder();
-            tasks.stream().filter(task -> task.getTitle().equals(title)).forEach(task -> stringBuilder.append(task.getTitle()));
-
-            return stringBuilder.toString();
+            return filterAllTasksByTitle(title);
         }
         else if (parameters.get(0).equals("sort"))
         {
-            String sortedTitles = tasks.stream()
-                    .sorted(Comparator.comparing(Task::getTitle))
-                    .map(Task::getTitle)
-                    .collect(Collectors.joining(", "));
-
-            return sortedTitles;
+            return sortAllTasks();
         }
         else
         {
@@ -54,5 +46,22 @@ public class ListAllTasks implements Command
         }
     }
 
+    private String filterAllTasksByTitle(String title)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        tasks.stream().filter(task -> task.getTitle().equals(title)).forEach(task -> stringBuilder.append(task.print()));
+
+        return stringBuilder.toString();
+    }
+
+    private String sortAllTasks()
+    {
+        String sortedTitles = tasks.stream()
+                .sorted(Comparator.comparing(Task::getTitle))
+                .map(Task::getTitle)
+                .collect(Collectors.joining(", "));
+
+        return sortedTitles;
+    }
 
 }

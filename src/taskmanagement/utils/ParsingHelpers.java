@@ -1,6 +1,8 @@
 package taskmanagement.utils;
 
 import taskmanagement.exceptions.InvalidUserInputException;
+import taskmanagement.models.tasks.TaskImpl;
+import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.feedback.FeedbackStatus;
 
 public class ParsingHelpers
