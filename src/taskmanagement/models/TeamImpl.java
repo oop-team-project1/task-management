@@ -73,7 +73,7 @@ public class TeamImpl implements Team
     @Override
     public String print() {
         StringBuilder result = new StringBuilder();
-        result.append(getName()).append(System.lineSeparator());
+        result.append(getName());
         return result.toString();
     }
 
