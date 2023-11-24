@@ -18,7 +18,8 @@ Change bug severity: ChangeBugSeverity <ID> <newSeverity>
 
 Change bug status: ChangeBugStatus --<ID> --<newStatus>
 
-Show team members: ShowTeamMembers <teamName>
+Show team members: ShowTeamMembers --<teamName>
+Add person to team: AddPersonToTeam --<teamMemberName> --<teamName>
 
 Assign task: AssignTask <Id> <newAssignee>
 
