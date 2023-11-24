@@ -2,7 +2,9 @@ package taskmanagement.commands.listing;
 
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Task;
+import taskmanagement.utils.ValidationHelper;
 
 import java.util.Comparator;
 import java.util.List;
@@ -12,6 +14,9 @@ public class ListAllTasks implements Command
 {
     public static final String TASK_ERROR_MESSAGE = "There are no registered tasks!";
     public static final String PARAMETERS_ERROR_MESSAGE = "Wrong parameters for task!";
+    public static final String PARAMETERS_COUNT_ERROR_MESSAGE = "Wrong parameters count for task!";
+    public static final int PARAMETERS_COUNT_MIN = 1;
+    public static final int PARAMETERS_COUNT_MAX = 2;
 
     private final List<Task> tasks;
 
@@ -28,10 +33,14 @@ public class ListAllTasks implements Command
         {
             return TASK_ERROR_MESSAGE;
         }
+        ValidationHelper.validateValueEitherOfTwoNumbers(parameters.size(),PARAMETERS_COUNT_MIN,PARAMETERS_COUNT_MAX,
+                PARAMETERS_COUNT_ERROR_MESSAGE);
 
         if (parameters.get(0).equals("filter"))
         {
             String title = parameters.get(1);
+            ValidationHelper.validateStringLength(title, TaskImpl.MIN_TITLE_LENGTH, TaskImpl.MAX_TITLE_LENGTH,
+                    TaskImpl.TITLE_LENGTH_ERROR);
             return filterAllTasksByTitle(title);
         }
         else if (parameters.get(0).equals("sort"))
