@@ -14,9 +14,7 @@ import java.util.List;
 public class AddCommentToTask implements Command
 {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
-
     private final TaskManagementRepository taskManagementRepository;
-
     private int taskId;
     private String content;
     private String author;

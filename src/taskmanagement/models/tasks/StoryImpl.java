@@ -1,18 +1,10 @@
 package taskmanagement.models.tasks;
 
-import taskmanagement.models.MemberImpl;
-import taskmanagement.models.comment.Comment;
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.contracts.GenericStatus;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 
 public class StoryImpl extends TaskImpl implements Story {
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s. " +

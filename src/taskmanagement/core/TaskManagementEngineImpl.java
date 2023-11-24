@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class TaskManagementEngineImpl implements Engine
 {
-    private static final String TERMINATION_COMMAND = "Exit";
-    private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
+    public static final String TERMINATION_COMMAND = "Exit";
+    public static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
 
     private final CommandFactory commandFactory;
     private final TaskManagementRepository taskManagementRepository;

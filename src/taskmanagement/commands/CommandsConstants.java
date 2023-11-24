@@ -20,6 +20,4 @@ public class CommandsConstants {
     public static final String MEMBER_ASSIGNED_STORY = "Person with name %s was assigned to story with id %d.";
     public static final String MEMBER_ASSIGNED_BUG = "Person with name %s was assigned to bug with id %d.";
     public static final String MEMBER_ADDED_TO_TEAM = "Person with name %s was added to team %s! Welcome!";
-
-
 }

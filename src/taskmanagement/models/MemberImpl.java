@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class MemberImpl implements Member {
-
     public static final String NAME_LENGTH_ERR = "Member name must be between %s and %s characters long!";
     public static final String ADD_TASK_TO_LIST = "Task %s added to member %s.";
     public static final String HISTORY_MESSAGE = "Activity History on member %s:";
@@ -27,11 +26,11 @@ public class MemberImpl implements Member {
 
     private void setName(String name) {
         ValidationHelper.validateStringLength(name,
-                TeamImpl.NAME_LEN_MIN,
-                TeamImpl.NAME_LEN_MAX,
+                BoardImpl.NAME_MIN_LENGTH,
+                BoardImpl.NAME_MAX_LENGTH,
                 String.format(NAME_LENGTH_ERR,
-                        TeamImpl.NAME_LEN_MIN,
-                        TeamImpl.NAME_LEN_MAX));
+                        BoardImpl.NAME_MIN_LENGTH,
+                        BoardImpl.NAME_MAX_LENGTH));
         this.name = name;
     }
 
@@ -50,9 +49,6 @@ public class MemberImpl implements Member {
         return new ArrayList<>(activityHistory);
     }
 
-
-    //TODO decide if members need two separate lists as well
-    //TODO think what should errors return, id or title. Make it equal in the whole program.
     @Override
     public void addTask(Task task) {
         tasks.add(task);
@@ -63,7 +59,6 @@ public class MemberImpl implements Member {
 
     @Override
     public void removeTask(Task task) {
-        // double check, to not rely on execution order in the command UnassignBug
         if (!tasks.contains(task)) throw new IllegalArgumentException(String.format(
                 NO_SUCH_TASK_ERR, this.name, task.getId()));
         tasks.remove(task);
@@ -88,6 +83,4 @@ public class MemberImpl implements Member {
         result.append(getName());
         return result.toString();
     }
-
-
 }

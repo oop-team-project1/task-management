@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ShowAllPeople implements Command
 {
-    private static final String MEMBER_ERROR_MESSAGE = "There are no registered members!";
+    public static final String MEMBER_ERROR_MESSAGE = "There are no registered members!";
     private final List<Member> members;
 
     public ShowAllPeople(TaskManagementRepository taskManagementRepository)

@@ -1,10 +1,8 @@
 package taskmanagement.models.comment;
 
-import taskmanagement.utils.ValidationHelper;
 
 public class CommentImpl implements  Comment
 {
-
     private String author;
     private String content;
 

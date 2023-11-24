@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ShowAllTeams implements Command
 {
-    private static final String TEAM_ERROR_MESSAGE = "There are no registered teams!";
+    public static final String TEAM_ERROR_MESSAGE = "There are no registered teams!";
     private final List<Team> teams;
 
     public ShowAllTeams(TaskManagementRepository taskManagementRepository)

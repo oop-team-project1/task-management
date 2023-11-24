@@ -13,7 +13,7 @@ import java.util.List;
 public class ChangeBugStatus implements Command {
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    private static final String ERROR_MESSAGE = "Invalid status type!";
+    public static final String ERROR_MESSAGE = "Invalid status type!";
     private final TaskManagementRepository taskManagementRepository;
     private int bugId;
     private BugStatus status;
@@ -38,6 +38,6 @@ public class ChangeBugStatus implements Command {
     private void parseParameters(List<String> parameters)
     {
         bugId = ParsingHelpers.tryParseInteger(parameters.get(0), "bug id");
-        status = ParsingHelpers.tryParseEnum(parameters.get(1), status.getDeclaringClass(), ERROR_MESSAGE);
+        status = ParsingHelpers.tryParseBugStatus(parameters.get(1));
     }
 }

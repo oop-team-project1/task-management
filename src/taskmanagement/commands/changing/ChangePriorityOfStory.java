@@ -13,7 +13,7 @@ import java.util.List;
 public class ChangePriorityOfStory implements Command
 {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    private static final String ERROR_MESSAGE = "Invalid priority type!";
+    public static final String ERROR_MESSAGE = "Invalid priority type!";
     private final TaskManagementRepository taskManagementRepository;
 
     private int storyId;

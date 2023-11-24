@@ -6,12 +6,9 @@ import taskmanagement.models.tasks.contracts.Task;
 import java.util.List;
 
 public interface Member extends Printable, IdentifiableByName {
-
     List<Task> getTask();
     List<String> getActivityHistory();
     void addTask(Task task);
     void removeTask(Task task);
     String viewActivity();
-
-
 }

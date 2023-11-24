@@ -13,7 +13,6 @@ import taskmanagement.models.tasks.contracts.*;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
-import taskmanagement.models.tasks.enums.story.StoryStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     private List<Task> tasks;
     private int id;
 
-
-
-
     public TaskManagementRepositoryImpl(){
         teams = new ArrayList<>();
         members = new ArrayList<>();
@@ -47,7 +43,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         feedbacks = new ArrayList<>();
         id = 0;
     }
-
 
     @Override
     public List<Team> getTeams() {
@@ -68,14 +63,12 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         return new ArrayList<>(bugs);
     }
 
-
     public List<Story> getStories() {
         return new ArrayList<>(stories);
     }
     public List<Feedback> getFeedbacks() {
         return new ArrayList<>(feedbacks);
     }
-
 
     @Override
     public Member findMemberByName(String personName) {
@@ -91,8 +84,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         return this.findElementByName(getTeams(), teamName);
     }
 
-    //not sure if this cast is ok, but i think that there are no info that can be lost, so it should work
-
     @Override
     public Story findStoryById(int id)
     {
@@ -104,7 +95,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Feedback findFeedbackById(int id) {
         return findElementById(getFeedbacks(), id);
     }
-    //TODO am not a fan of the casting, will get back to it to think if there is time
     @Override
     public Bug findBugById(int id) {return findElementById(getBugs(), id);}
     @Override
@@ -115,7 +105,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     {
         return findElementById(getTasks(), id);
     }
-
 
     @Override
     public List<Board> getBoards() {
@@ -231,7 +220,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         stories.add(story);
     }
 
-
     @Override
     public void addMemberToTeam(Member memberToAdd, Team team) {
         if(!teams.contains(team)) throw new IllegalArgumentException("Team does not exist!");
@@ -263,8 +251,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
         throw new ElementNotFoundException(String.format(ELEMENT_WITH_ID_NOT_FOUND_ERR, id));
     }
-
-
+    
     private <T extends Identifiable> T findElementById(List<T> elements, int id, String errorMessage) {
         for (T element : elements) {
             if (element.getId() == id) {

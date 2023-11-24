@@ -1,23 +1,19 @@
 package taskmanagement.models.tasks;
 
 import taskmanagement.models.comment.Comment;
-import taskmanagement.models.comment.CommentImpl;
-import taskmanagement.models.tasks.contracts.GenericStatus;
 import taskmanagement.models.tasks.contracts.Task;
-import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TaskImpl implements Task {
-
-    private final int MIN_TITLE_LENGTH = 10;
-    private final int MAX_TITLE_LENGTH = 100;
-    private final String TITLE_LENGTH_ERROR = String.format("Title should be between %d and %d symbols!", MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
-    private final int MIN_DESCRIPTION_LENGTH = 10;
-    private final int MAX_DESCRIPTION_LENGTH = 100;
-    private final String DESCRIPTION_LENGTH_ERROR = String.format("Description should be between %d and %d symbols!", MIN_DESCRIPTION_LENGTH, MAX_DESCRIPTION_LENGTH);
+    public final int MIN_TITLE_LENGTH = 10;
+    public final int MAX_TITLE_LENGTH = 100;
+    public final String TITLE_LENGTH_ERROR = String.format("Title should be between %d and %d symbols!", MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
+    public final int MIN_DESCRIPTION_LENGTH = 10;
+    public final int MAX_DESCRIPTION_LENGTH = 100;
+    public final String DESCRIPTION_LENGTH_ERROR = String.format("Description should be between %d and %d symbols!", MIN_DESCRIPTION_LENGTH, MAX_DESCRIPTION_LENGTH);
     public static final String HISTORY_MESSAGE = "Comments on task with id %d";
     private final int id;
     private String title;
@@ -113,8 +109,4 @@ public abstract class TaskImpl implements Task {
         result.append(getDescription());
         return result.toString();
     }
-
-    //TODO Write toString method
-
-
 }
