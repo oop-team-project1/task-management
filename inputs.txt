@@ -1,16 +1,16 @@
 inputs:
 
-Create board in a team: createboard --<teamName> --<boardName>
+Create board in a team: CreateBoard --<teamName> --<boardName>
 
-Create feedback in a board: createnewfeedback --<boardName> --<title> --<description> --<rating>
+Create feedback in a board: CreateNewFeedback --<boardName> --<title> --<description> --<rating>
 
-Show team boards: showteamboards --<teamName>
+Show team boards: ShowTeamBoards --<teamName>
 
-Show person's activity: showmemberactivity <memberName>
+Show person's activity: ShowMemberActivity <memberName>
 
-Change feedback status: changefeedbackstatus --<ID> --<newStatus>
+Change feedback status: ChangeFeedbackStatus --<ID> --<newStatus>
 
-Change feedback rating: changefeedbackrating --<ID> --<newRating>
+Change feedback rating: ChangeFeedbackRating --<ID> --<newRating>
 
 Change bug priority: ChangeBugPriority <ID> <newPriority>
 
@@ -24,7 +24,7 @@ Assign task: AssignTask <Id> <newAssignee>
 
 Unassign task: <Id> <newAssignee>
 
-Create story: CreateStory <title> <description> <memberName> <priority> <size> <status> >
+Create story: CreateNewStory --<boardName> --<title> --<description> --<memberName> --<priority> --<size> --<status>
 
 Create new team : CreateNewTeam --<teamName>
 
