@@ -70,6 +70,7 @@ public class BugImpl extends TaskImpl implements Bug {
             throw new IllegalArgumentException(
                     String.format(BUG_ASSIGNED_ERR, assignee.getName(),member.getName(),getId(),assignee));
         }
+        logEvent(String.format("Bug has been assigned to %s",member.getName()));
         assignee = member;
         isAssigned = true;
     }

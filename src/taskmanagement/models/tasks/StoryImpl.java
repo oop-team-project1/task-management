@@ -22,6 +22,12 @@ public class StoryImpl extends TaskImpl implements Story {
     public static final String SIZE_CHANGE_ERR = "Size already set to %s. " +
                                                 "If you still wish to change it, " +
                                                 "please provide a valid value.";
+
+    public static final String STORY_ASSIGNED_ERR =
+            "This story is already assigned to %s!\n" +
+            "If you are sure you wish to assign it to %s, please unassign it first by using the command UnassignStory %d %s";
+
+    public static final String MEMBER_NOT_ASSIGNED_ERR = "Member %s is not assigned to this task therefore can't be unassigned!";
     private Priority priority;
     private Size size;
     private StoryStatus status;
@@ -54,8 +60,11 @@ public class StoryImpl extends TaskImpl implements Story {
 
     public void setAssignee(Member member) {
         if (isAssigned) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    String.format(STORY_ASSIGNED_ERR, assignee.getName(),member.getName(),getId(),assignee));
+
         }
+        logEvent(String.format("Story has been assigned to %s",member.getName()));
         assignee = member;
         isAssigned = true;
     }
@@ -65,8 +74,9 @@ public class StoryImpl extends TaskImpl implements Story {
         //TODO overwrite equals in member
 
         if (!assignee.equals(member)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MEMBER_NOT_ASSIGNED_ERR);
         }
+        logEvent(String.format("Member %s was unassigned from this task",member.getName()));
         assignee = null;
         isAssigned = false;
 
