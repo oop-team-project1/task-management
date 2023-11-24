@@ -25,6 +25,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowTeamActivity(repository);
             case SHOWBOARDACTIVITY:
                 return new ShowBoardActivity(repository);
+            case SHOWTEAMBOARDS:
+                return new ShowTeamBoards(repository);
             case CREATENEWPERSON:
                 return new CreateNewPerson(repository);
             case CREATENEWTEAM:
@@ -62,15 +64,15 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATEBOARD:
                 return new CreateBoardInATeam(repository);
             case ADDCOMMENTTOTASK:
-                new AddCommentToTask(repository);
+                return new AddCommentToTask(repository);
             case ASSIGNBUG:
-                new AssignBug(repository);
+                return new AssignBug(repository);
             case UNASSIGNBUG:
-                new UnassignBug(repository);
+                return new UnassignBug(repository);
             case ASSIGNSTORY:
-                new AssignStory(repository);
+                return new AssignStory(repository);
             case UNASSIGNSTORY:
-                new UnassignStory(repository);
+                return new UnassignStory(repository);
             case LISTALLTASKS:
                 return null;
             case LISTBUGS:
@@ -82,21 +84,21 @@ public class CommandFactoryImpl implements CommandFactory {
             case LISTTASKWITHASSIGNEE:
                 return null;
             case SORTBUGSBYTITLE:
-                new SortBugsByTitle(repository);
+                return new SortBugsByTitle(repository);
             case SORTFEEDBACKSBYTITLE:
-                new SortFeedbacksByTitle(repository);
+                return new SortFeedbacksByTitle(repository);
             case SORTSTORIESBYTITLE:
-                new SortStoriesByTitle(repository);
+                return new SortStoriesByTitle(repository);
             case SORTBUGSBYPRIORITY:
-                new SortBugsByPriority(repository);
+                return new SortBugsByPriority(repository);
             case SORTSTORIESBYPRIORITY:
-                new SortStoriesByPriority(repository);
+                return  new SortStoriesByPriority(repository);
             case SORTBUGSBYSEVERITY:
-                new SortBugsBySeverity(repository);
+                return new SortBugsBySeverity(repository);
             case SORTSTORIESBYSIZE:
-                new SortStoriesBySize(repository);
+                return new SortStoriesBySize(repository);
             case SORTFEEDBACKSBYRATING:
-                new SortFeedbacksByRating(repository);
+                return new SortFeedbacksByRating(repository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
         }

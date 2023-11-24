@@ -11,6 +11,7 @@ import java.util.List;
 public class ShowTeamBoards implements Command {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     public static final String BOARDS_ERR_MESSAGE = "There are no registered boards!";
+    public static final String SHOW_BOARDS_MSG = "Boards in %s:";
     private final TaskManagementRepository taskManagementRepository;
 
     public ShowTeamBoards(TaskManagementRepository taskManagementRepository){
@@ -33,8 +34,9 @@ public class ShowTeamBoards implements Command {
         }
 
         StringBuilder result = new StringBuilder();
+        result.append(String.format(SHOW_BOARDS_MSG, team.getName())).append(System.lineSeparator());
         for(Board board : team.getBoards()) {
-            result.append(board).append(System.lineSeparator());
+            result.append(board.getName()).append(System.lineSeparator());
         }
 
         return result.toString().trim();
