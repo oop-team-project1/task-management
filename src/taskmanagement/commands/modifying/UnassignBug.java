@@ -36,7 +36,7 @@ public class UnassignBug implements Command {
         memberToUnassign.removeTask(bug);
 
 
-        return String.format(CommandsConstants.MEMBER_UNASSIGNED_BUG, member, bug.getId());
+        return String.format(CommandsConstants.MEMBER_UNASSIGNED_BUG, memberToUnassign.getName(), bug.getId());
     }
 
     private void parseParameters(List<String> parameters) {

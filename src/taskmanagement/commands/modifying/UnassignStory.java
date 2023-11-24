@@ -35,7 +35,7 @@ public class UnassignStory implements Command {
         memberToUnassign.removeTask(story);
 
 
-        return String.format(CommandsConstants.MEMBER_UNASSIGNED_STORY, member, story.getId());
+        return String.format(CommandsConstants.MEMBER_UNASSIGNED_STORY, memberToUnassign.getName(), story.getId());
     }
 
     private void parseParameters(List<String> parameters) {
