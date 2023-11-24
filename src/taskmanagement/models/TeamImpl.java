@@ -11,13 +11,11 @@ import java.util.List;
 
 public class TeamImpl implements Team
 {
-    public static final int NAME_LEN_MIN = 5;
-    public static final int NAME_LEN_MAX = 15;
 
     private static final String NAME_LEN_ERR = format(
             "Team name must be between %s and %s characters long!",
-            NAME_LEN_MIN,
-            NAME_LEN_MAX);
+            BoardImpl.NAME_MIN_LENGTH,
+            BoardImpl.NAME_MAX_LENGTH);
 
     private static final String MEMBER_EXISTS_ERR = "The member you are trying to add is already part of the team!";
     public static final String MEMBER_DOES_NOT_EXIST = "The member you are trying to remove does not exists!";
@@ -35,11 +33,10 @@ public class TeamImpl implements Team
 
     private void setName(String name)
     {
-        ValidationHelper.validateStringLength(name, NAME_LEN_MIN, NAME_LEN_MAX, NAME_LEN_ERR);
+        ValidationHelper.validateStringLength(name, BoardImpl.NAME_MIN_LENGTH, BoardImpl.NAME_MAX_LENGTH, NAME_LEN_ERR);
         this.name = name;
     }
 
-    //add board to team
     public void addBoard(Board board) {
         boards.add(board);
     }
@@ -76,6 +73,4 @@ public class TeamImpl implements Team
         result.append(getName());
         return result.toString();
     }
-
-
 }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardImpl implements Board {
-
     public static final int NAME_MIN_LENGTH = 5;
     public static final int NAME_MAX_LENGTH = 15;
     public static final String ADD_TASK_TO_LIST = "Task %s added to board %s";
