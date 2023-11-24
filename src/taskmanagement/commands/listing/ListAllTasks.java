@@ -56,7 +56,9 @@ public class ListAllTasks implements Command
     private String filterAllTasksByTitle(String title)
     {
         StringBuilder stringBuilder = new StringBuilder();
-        tasks.stream().filter(task -> task.getTitle().equals(title)).forEach(task -> stringBuilder.append(task.print()));
+        tasks.stream()
+                .filter(task -> task.getTitle().equals(title))
+                .forEach(task -> stringBuilder.append(task.print()));
 
         return stringBuilder.toString();
     }
