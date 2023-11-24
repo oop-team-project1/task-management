@@ -2,6 +2,7 @@ package taskmanagement.commands.listing;
 
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
+import taskmanagement.models.tasks.TaskImpl;
 import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.utils.ValidationHelper;
 
@@ -38,6 +39,8 @@ public class ListAllTasks implements Command
         if (parameters.get(0).equals("filter"))
         {
             String title = parameters.get(1);
+            ValidationHelper.validateStringLength(title, TaskImpl.MIN_TITLE_LENGTH, TaskImpl.MAX_TITLE_LENGTH,
+                    TaskImpl.TITLE_LENGTH_ERROR);
             return filterAllTasksByTitle(title);
         }
         else if (parameters.get(0).equals("sort"))
