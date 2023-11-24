@@ -11,6 +11,8 @@ import java.util.List;
 
 public class TeamImpl implements Team
 {
+    public static final int NAME_LEN_MIN = 5;
+    public static final int NAME_LEN_MAX = 15;
 
     private static final String NAME_LEN_ERR = format(
             "Team name must be between %s and %s characters long!",

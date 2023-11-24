@@ -26,11 +26,11 @@ public class MemberImpl implements Member {
 
     private void setName(String name) {
         ValidationHelper.validateStringLength(name,
-                TeamImpl.NAME_LEN_MIN,
-                TeamImpl.NAME_LEN_MAX,
+                BoardImpl.NAME_MIN_LENGTH,
+                BoardImpl.NAME_MAX_LENGTH,
                 String.format(NAME_LENGTH_ERR,
-                        TeamImpl.NAME_LEN_MIN,
-                        TeamImpl.NAME_LEN_MAX));
+                        BoardImpl.NAME_MIN_LENGTH,
+                        BoardImpl.NAME_MAX_LENGTH));
         this.name = name;
     }
 
