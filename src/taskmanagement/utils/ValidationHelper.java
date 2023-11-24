@@ -15,6 +15,14 @@ public class ValidationHelper
         }
     }
 
+    public static void validateValueEitherOfTwoNumbers(double value, double min, double max, String errorMessage)
+    {
+        if (value != min || value != max)
+        {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
     public static void validateStringLength(String stringToValidate, int minLength, int maxLength, String errorMessage) {
         validateValueInRange(stringToValidate.length(), minLength, maxLength, errorMessage);
     }
