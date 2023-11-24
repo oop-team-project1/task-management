@@ -51,10 +51,12 @@ public class CreateNewBugInBoard implements Command
         if (parametersCount == MAX_NUMBER_OF_ARGUMENTS) {
             member = taskManagementRepository.findMemberByName(memberName);
             createBug = taskManagementRepository.createNewBugWithMember(title, description, member, priority, severity, stepsToReproduce);
+            board.addTask(createBug, "Bug");
         }
         else
         {
             createBug = taskManagementRepository.createNewBugWithoutMember(title, description, priority, severity, stepsToReproduce);
+            board.addTask(createBug, "Bug");
         }
 
         return String.format(CommandsConstants.BUG_CREATED_MESSAGE, createBug.getId());

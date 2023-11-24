@@ -10,8 +10,8 @@ import java.util.List;
 public class BoardImpl implements Board {
     public static final int NAME_MIN_LENGTH = 5;
     public static final int NAME_MAX_LENGTH = 15;
-    public static final String ADD_TASK_TO_LIST = "Task %s added to board %s";
-    public static final String HISTORY_MESSAGE = "Activity History on Board %s";
+    public static final String ADD_TASK_TO_LIST = "- Task %s with ID %d added to board %s.";
+    public static final String HISTORY_MESSAGE = "Activity History on Board %s:";
     private String name;
     private List<Task> tasks;
     private List<String> activityHistory;
@@ -46,11 +46,10 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public void addTask(Task task) {
+    public void addTask(Task task, String type) {
         tasks.add(task);
-        String message = String.format(ADD_TASK_TO_LIST, task.getTitle(), name);
+        String message = String.format(ADD_TASK_TO_LIST, type, task.getId(), name);
         activityHistory.add(message);
-
     }
 
 

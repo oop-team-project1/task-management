@@ -32,7 +32,7 @@ public class CreateFeedbackInBoard implements Command {
         Board board = taskManagementRepository.findBoardByName(boardName);
 
         Feedback feedback =  taskManagementRepository.createNewFeedback(title, description,rating);
-        board.addTask(feedback);
+        board.addTask(feedback, "Feedback");
 
         return String.format(CommandsConstants.FEEDBACK_CREATED_MESSAGE, feedback.getId());
     }
