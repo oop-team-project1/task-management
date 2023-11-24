@@ -68,7 +68,7 @@ public class BugImpl extends TaskImpl implements Bug {
         //TODO write message
         if (isAssigned) {
             throw new IllegalArgumentException(
-                    String.format(BUG_ASSIGNED_ERR, assignee,member.getName(),getId(),assignee));
+                    String.format(BUG_ASSIGNED_ERR, assignee.getName(),member.getName(),getId(),assignee));
         }
         assignee = member;
         isAssigned = true;
@@ -82,7 +82,7 @@ public class BugImpl extends TaskImpl implements Bug {
         if (!assignee.equals(member)) {
             throw new IllegalArgumentException(MEMBER_NOT_ASSIGNED_ERR);
         }
-        logEvent(String.format("Member %s was unassigned from this task", assignee));
+        logEvent(String.format("Member %s was unassigned from this task", assignee.getName()));
         assignee = null;
         isAssigned = false;
 
