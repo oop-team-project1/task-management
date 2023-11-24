@@ -15,7 +15,6 @@ import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
 import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.contracts.Bug;
-import taskmanagement.models.tasks.contracts.Task;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.utils.TestHelpers;
