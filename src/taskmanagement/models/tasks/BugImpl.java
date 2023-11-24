@@ -26,6 +26,7 @@ public class BugImpl extends TaskImpl implements Bug {
             "This bug is already assigned to %s!\n" +
             "If you are sure you wish to assign it to %s, please unassign it first by using the command UnassignBug %d %s";
     public static final String MEMBER_NOT_ASSIGNED_ERR = "Member %s is not assigned to this task therefore can't be unassigned!";
+    public static final String TASK_NOT_ASSIGNED = "This task is not assigned to anyone!";
 
     private Member assignee;
     private BugStatus status;
@@ -51,6 +52,7 @@ public class BugImpl extends TaskImpl implements Bug {
     // TODO return copy
     @Override
     public Member getAssignee() {
+        if (!isAssigned) throw new IllegalArgumentException(TASK_NOT_ASSIGNED);
         return assignee;
     }
 
