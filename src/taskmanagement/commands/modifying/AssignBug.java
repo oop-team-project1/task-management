@@ -35,7 +35,7 @@ public class AssignBug implements Command {
         bug.setAssignee(memberToBeAssigned);
         memberToBeAssigned.addTask(bug);
 
-        return String.format(CommandsConstants.MEMBER_ASSIGNED_BUG, member, bug.getId());
+        return String.format(CommandsConstants.MEMBER_ASSIGNED_BUG, memberToBeAssigned.getName(), bug.getId());
     }
 
     private void parseParameters(List<String> parameters) {
