@@ -38,6 +38,6 @@ public class ChangeBugStatus implements Command {
     private void parseParameters(List<String> parameters)
     {
         bugId = ParsingHelpers.tryParseInteger(parameters.get(0), "bug id");
-        status = ParsingHelpers.tryParseEnum(parameters.get(1), status.getDeclaringClass(), ERROR_MESSAGE);
+        status = ParsingHelpers.tryParseBugStatus(parameters.get(1));
     }
 }
