@@ -20,11 +20,13 @@ public class StoryImpl extends TaskImpl implements Story {
             "If you are sure you wish to assign it to %s, please unassign it first by using the command UnassignStory %d %s";
 
     public static final String MEMBER_NOT_ASSIGNED_ERR = "Member %s is not assigned to this task therefore can't be unassigned!";
+    public static final String TASK_NOT_ASSIGNED = "This task is not assigned to anyone!";
+
     private Priority priority;
     private Size size;
     private StoryStatus status;
     private Member assignee;
-    private boolean isAssigned = true;
+    private boolean isAssigned = false;
     //TODO Implement in parent class with LogEvents
 
 
@@ -44,8 +46,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public Member getAssignee() {
-        //TODO implement cloneable in MemberImpl || implement to return constructor
-        // with getters
+        if (!isAssigned) throw new IllegalArgumentException(TASK_NOT_ASSIGNED);
         return assignee;
 
     }
