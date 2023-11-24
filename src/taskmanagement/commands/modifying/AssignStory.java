@@ -33,7 +33,7 @@ public class AssignStory implements Command {
         story.setAssignee(memberToBeAssigned);
         memberToBeAssigned.addTask(story);
 
-        return String.format(CommandsConstants.MEMBER_ASSIGNED_STORY, member, story.getId());
+        return String.format(CommandsConstants.MEMBER_ASSIGNED_STORY, memberToBeAssigned.getName(), story.getId());
     }
 
     private void parseParameters(List<String> parameters) {
