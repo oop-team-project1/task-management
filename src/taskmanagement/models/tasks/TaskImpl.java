@@ -1,10 +1,7 @@
 package taskmanagement.models.tasks;
 
 import taskmanagement.models.comment.Comment;
-import taskmanagement.models.comment.CommentImpl;
-import taskmanagement.models.tasks.contracts.GenericStatus;
 import taskmanagement.models.tasks.contracts.Task;
-import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.ArrayList;
