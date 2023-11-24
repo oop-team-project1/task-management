@@ -16,7 +16,7 @@ Change bug priority: ChangeBugPriority <ID> <newPriority>
 
 Change bug severity: ChangeBugSeverity <ID> <newSeverity>
 
-Change bug status: ChangeBugStatus <ID> <newStatus>
+Change bug status: ChangeBugStatus --<ID> --<newStatus>
 
 Show team members: ShowTeamMembers <teamName>
 
