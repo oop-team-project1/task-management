@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ValidationHelper
     //TODO Change type of exception to InvalidUserInput
-    //
 {
     public static final String INVALID_NUMBER_OF_ARGUMENTS = "Invalid number of arguments. Expected: %d, Received: %d";
 

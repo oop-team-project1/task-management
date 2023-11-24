@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CreateBoardInATeam implements Command {
 
-    private static final String BOARD_ADDED_TO_TEAM = "Board %s added to team %s!";
+    public static final String BOARD_ADDED_TO_TEAM = "Board %s added to team %s!";
 
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 

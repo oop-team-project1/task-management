@@ -11,10 +11,9 @@ import taskmanagement.utils.ValidationHelper;
 import java.util.List;
 
 public class AssignStory implements Command {
+    public final String INVALID_ID = "Please provide a valid story id!";
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private final TaskManagementRepository taskManagementRepository;
-    private final String INVALID_ID = "Please provide a valid story id!";
-
     private int taskId;
     private String member;
 

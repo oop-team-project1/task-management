@@ -12,9 +12,9 @@ import java.util.List;
 
 public class AssignBug implements Command {
 
+    public final String INVALID_ID = "Please provide a valid bug id!";
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private final TaskManagementRepository taskManagementRepository;
-    private final String INVALID_ID = "Please provide a valid bug id!";
 
     private int taskId;
     private String member;

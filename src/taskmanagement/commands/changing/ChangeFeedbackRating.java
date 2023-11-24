@@ -4,7 +4,6 @@ import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.tasks.contracts.Feedback;
-import taskmanagement.models.tasks.enums.feedback.FeedbackStatus;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
@@ -12,8 +11,6 @@ import java.util.List;
 
 public class ChangeFeedbackRating implements Command {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-
-
     private final TaskManagementRepository taskManagementRepository;
     private int feedbackId;
     private int rating;

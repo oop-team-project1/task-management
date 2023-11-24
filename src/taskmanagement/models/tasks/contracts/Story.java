@@ -5,9 +5,8 @@ import taskmanagement.models.tasks.enums.story.Size;
 import taskmanagement.models.tasks.enums.story.StoryStatus;
 
 public interface Story extends Assignable,Prioritizable, Task, GenericStatus<StoryStatus> {
-   public StoryStatus getStatus();
-   public Size getSize();
-
+   StoryStatus getStatus();
+   Size getSize();
    void changeSize(Size newSize);
    void changeStatus(StoryStatus newStatus);
 }

@@ -79,5 +79,4 @@ public interface TaskManagementRepository {
 
     void removeMemberFromTeam(Member memberToRemove, Team team);
 
-
 }

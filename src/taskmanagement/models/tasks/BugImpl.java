@@ -2,8 +2,6 @@ package taskmanagement.models.tasks;
 
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Bug;
-import taskmanagement.models.tasks.contracts.GenericStatus;
-import taskmanagement.models.tasks.contracts.Prioritizable;
 import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;

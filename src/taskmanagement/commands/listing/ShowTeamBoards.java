@@ -3,16 +3,14 @@ package taskmanagement.commands.listing;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.contracts.Board;
-import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
-import taskmanagement.utils.ListingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
 import java.util.List;
 
 public class ShowTeamBoards implements Command {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    public static final String BOARDS_ERR_MESSAGE = "There are no registered boards";
+    public static final String BOARDS_ERR_MESSAGE = "There are no registered boards!";
     private final TaskManagementRepository taskManagementRepository;
 
     public ShowTeamBoards(TaskManagementRepository taskManagementRepository){

@@ -13,7 +13,7 @@ import java.util.List;
 public class ChangeBugStatus implements Command {
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    private static final String ERROR_MESSAGE = "Invalid status type!";
+    public static final String ERROR_MESSAGE = "Invalid status type!";
     private final TaskManagementRepository taskManagementRepository;
     private int bugId;
     private BugStatus status;

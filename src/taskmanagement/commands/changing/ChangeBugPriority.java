@@ -11,8 +11,8 @@ import taskmanagement.utils.ValidationHelper;
 import java.util.List;
 
 public class ChangeBugPriority implements Command {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    private static final String ERROR_MESSAGE = "Invalid priority type!";
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    public static final String ERROR_MESSAGE = "Invalid priority type!";
     private final TaskManagementRepository taskManagementRepository;
     private int bugId;
     private Priority priority;
