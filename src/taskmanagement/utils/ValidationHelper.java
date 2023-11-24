@@ -17,7 +17,7 @@ public class ValidationHelper
 
     public static void validateValueEitherOfTwoNumbers(double value, double min, double max, String errorMessage)
     {
-        if (value != min || value != max)
+        if (value != min && value != max)
         {
             throw new IllegalArgumentException(errorMessage);
         }

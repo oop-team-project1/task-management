@@ -56,7 +56,7 @@ public class BoardImplTest {
         Task taskToAdd = initializeTestFeedback();
 
         Assertions.assertAll(
-                () -> Assertions.assertDoesNotThrow(() -> board.addTask(taskToAdd)),
+                () -> Assertions.assertDoesNotThrow(() -> board.addTask(taskToAdd, TestHelpers.getString(3))),
                 () -> Assertions.assertEquals(1, board.getTask().size())
         );
     }

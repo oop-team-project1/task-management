@@ -15,8 +15,8 @@ public class ListAllTasks implements Command
     public static final String TASK_ERROR_MESSAGE = "There are no registered tasks!";
     public static final String PARAMETERS_ERROR_MESSAGE = "Wrong parameters for task!";
     public static final String PARAMETERS_COUNT_ERROR_MESSAGE = "Wrong parameters count for task!";
-    private static final double PARAMETERS_COUNT_MIN = 1;
-    private static final double PARAMETERS_COUNT_MAX = 2;
+    public static final int PARAMETERS_COUNT_MIN = 1;
+    public static final int PARAMETERS_COUNT_MAX = 2;
 
     private final List<Task> tasks;
 
