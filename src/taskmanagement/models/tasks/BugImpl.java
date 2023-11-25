@@ -1,5 +1,6 @@
 package taskmanagement.models.tasks;
 
+import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.enums.Priority;
@@ -53,7 +54,7 @@ public class BugImpl extends TaskImpl implements Bug {
     @Override
     public Member getAssignee() {
         if (!isAssigned) throw new IllegalArgumentException(TASK_NOT_ASSIGNED);
-        return assignee;
+        return new MemberImpl(assignee);
     }
 
     private void setStatus(BugStatus status) {
