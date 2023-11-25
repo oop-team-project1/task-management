@@ -50,7 +50,6 @@ public class BugImpl extends TaskImpl implements Bug {
         setAssignee(assignee);
     }
 
-    // TODO return copy
     @Override
     public Member getAssignee() {
         if (!isAssigned) throw new IllegalArgumentException(TASK_NOT_ASSIGNED);

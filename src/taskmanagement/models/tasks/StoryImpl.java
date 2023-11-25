@@ -1,5 +1,6 @@
 package taskmanagement.models.tasks;
 
+import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
@@ -47,7 +48,7 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public Member getAssignee() {
         if (!isAssigned) throw new IllegalArgumentException(TASK_NOT_ASSIGNED);
-        return assignee;
+        return new MemberImpl(assignee);
 
     }
 
