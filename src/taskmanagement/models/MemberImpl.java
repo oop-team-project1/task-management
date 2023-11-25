@@ -25,11 +25,11 @@ public class MemberImpl implements Member {
     }
 
     /**
-     *  Implementation of Copy Constructor to avoid importing 3rd party libraries and using clone() method.
+     * Implementation of Copy Constructor to avoid importing 3rd party libraries and using clone() method.
      *
      * @param member member to be copied
      */
-    public MemberImpl(Member member){
+    public MemberImpl(Member member) {
         this.name = member.getName();
         this.tasks = member.getTask();
         this.activityHistory = member.getActivityHistory();
@@ -93,5 +93,28 @@ public class MemberImpl implements Member {
         StringBuilder result = new StringBuilder();
         result.append(getName());
         return result.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+
+        if (object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        final Member other = (Member) object;
+
+        return this.name.equals(other.getName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.name.hashCode();
+        return hash;
     }
 }
