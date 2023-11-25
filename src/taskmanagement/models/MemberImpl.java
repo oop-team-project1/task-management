@@ -24,6 +24,17 @@ public class MemberImpl implements Member {
         activityHistory = new ArrayList<>();
     }
 
+    /**
+     *  Implementation of Copy Constructor to avoid importing 3rd party libraries and using clone() method.
+     *
+     * @param member member to be copied
+     */
+    public MemberImpl(Member member){
+        this.name = member.getName();
+        this.tasks = member.getTask();
+        this.activityHistory = member.getActivityHistory();
+    }
+
     private void setName(String name) {
         ValidationHelper.validateStringLength(name,
                 BoardImpl.NAME_MIN_LENGTH,
