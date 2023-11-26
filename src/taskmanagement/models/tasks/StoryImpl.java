@@ -13,8 +13,8 @@ public class StoryImpl extends TaskImpl implements Story {
                                                      "please provide a valid value.";
 
     public static final String SIZE_CHANGE_ERR = "Size already set to %s. " +
-                                                "If you still wish to change it, " +
-                                                "please provide a valid value.";
+                                                 "If you still wish to change it, " +
+                                                 "please provide a valid value.";
 
     public static final String STORY_ASSIGNED_ERR =
             "This story is already assigned to %s!\n" +
@@ -55,29 +55,26 @@ public class StoryImpl extends TaskImpl implements Story {
     public void setAssignee(Member member) {
         if (isAssigned) {
             throw new IllegalArgumentException(
-                    String.format(STORY_ASSIGNED_ERR, assignee.getName(),member.getName(),getId(),assignee));
+                    String.format(STORY_ASSIGNED_ERR, assignee.getName(), member.getName(), getId(), assignee));
 
         }
-        logEvent(String.format("Story has been assigned to %s",member.getName()));
+        logEvent(String.format("Story has been assigned to %s", member.getName()));
         assignee = member;
         isAssigned = true;
     }
 
     @Override
     public void removeAssignee(Member member) {
-        //TODO overwrite equals in member
-
         if (!assignee.equals(member)) {
             throw new IllegalArgumentException(MEMBER_NOT_ASSIGNED_ERR);
         }
-        logEvent(String.format("Member %s was unassigned from this task",member.getName()));
+        logEvent(String.format("Member %s was unassigned from this task", member.getName()));
         assignee = null;
         isAssigned = false;
 
 
     }
 
-    // TODO implement LogEvent class
     private void setStatus(StoryStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;
