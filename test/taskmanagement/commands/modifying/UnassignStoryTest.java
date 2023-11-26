@@ -3,20 +3,17 @@ package taskmanagement.commands.modifying;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import taskmanagement.commands.listing.ShowTeamMembers;
 import taskmanagement.core.TaskManagementRepositoryImpl;
 import taskmanagement.core.contracts.TaskManagementRepository;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.TeamImpl;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.contracts.Team;
-import taskmanagement.models.tasks.BugImpl;
 import taskmanagement.models.tasks.StoryImpl;
-import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
+import taskmanagement.utils.TaskBaseConstants;
 import taskmanagement.utils.TestHelpers;
 import taskmanagement.commands.contracts.Command;
 
@@ -51,22 +48,8 @@ class UnassignStoryTest {
     }
 
     @Test
-    public void should_AddStory_To_MembersTasks() {
-        //TODO
-    }
-
-    @Test
-    public void should_AddAssignee_To_Story() {
-        //TODO
-    }
-
-
-
-
-    @Test
-    public void should_UnassignStory_When_StoryIsAssigned() {
-        //Arrange
-        List<String> params = List.of(String.valueOf(STORY_ID), TestHelpers.getString(VALID_NAME_SIZE));
+    public void should_RemoveStory_From_MemberTasks() {
+        List<String> params = List.of(String.valueOf(TaskBaseConstants.TASK_ID), TestHelpers.getString(VALID_NAME_SIZE));
         Team team = new TeamImpl(TestHelpers.getString(VALID_NAME_SIZE));
         Member memberAssigned = new MemberImpl(TestHelpers.getString(VALID_NAME_SIZE));
         taskManagementRepository.addTeam(team);
@@ -76,7 +59,25 @@ class UnassignStoryTest {
         memberAssigned.addTask(story);
         command.execute(params);
         //Act and Assert
+        Assertions.assertEquals(0,memberAssigned.getTask().size());
+
+    }
+
+    @Test
+    public void should_UnassignStory_When_StoryIsAssigned() {
+        //Arrange
+        List<String> params = List.of(String.valueOf(TaskBaseConstants.TASK_ID), TestHelpers.getString(VALID_NAME_SIZE));
+        Team team = new TeamImpl(TestHelpers.getString(VALID_NAME_SIZE));
+        Member memberAssigned = new MemberImpl(TestHelpers.getString(VALID_NAME_SIZE));
+        taskManagementRepository.addTeam(team);
+        taskManagementRepository.addMember(memberAssigned);
+        Story story = new StoryImpl(1, TaskBaseConstants.VALID_TITLE, TaskBaseConstants.VALID_DESCRIPTION, TaskBaseConstants.VALID_PRIORITY, TaskBaseConstants.VALID_SIZE, memberAssigned);
+        taskManagementRepository.addStory(story);
+        memberAssigned.addTask(story);
+        command.execute(params);
+        //Act and Assert
         Assertions.assertThrows(IllegalArgumentException.class, story::getAssignee);
     }
+
 
 }
