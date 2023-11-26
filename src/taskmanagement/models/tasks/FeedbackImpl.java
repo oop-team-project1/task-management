@@ -1,5 +1,6 @@
 package taskmanagement.models.tasks;
 
+import taskmanagement.IgnoreCoverage;
 import taskmanagement.models.tasks.contracts.Feedback;
 import taskmanagement.models.tasks.enums.feedback.FeedbackStatus;
 import taskmanagement.utils.ValidationHelper;
@@ -13,8 +14,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
             "Rating should be a value between %d and %d",
             MIN_RATING_VALUE, MAX_RATING_VALUE);
     public static final String STATUS_CHANGE_ERR = "Status already set to %s. " +
-            "If you still wish to change it, " +
-            "please provide a valid value.";
+                                                   "If you still wish to change it, " +
+                                                   "please provide a valid value.";
 
     private FeedbackStatus status;
     private int rating;
@@ -32,17 +33,17 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     private void setRating(int rating) {
-        ValidationHelper.validateValueInRange(
-                rating, MIN_RATING_VALUE,
-                MAX_RATING_VALUE, RATING_VALUE_ERROR);
+        validateRating(rating);
         this.rating = rating;
     }
 
+    @IgnoreCoverage
     @Override
     public int getRating() {
         return rating;
     }
 
+    @IgnoreCoverage
     @Override
     public FeedbackStatus getStatus() {
         return status;
@@ -61,8 +62,15 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     @Override
     public void changeRating(int rating) {
+        validateRating(rating);
         int currentRating = this.getRating();
         setRating(rating);
         logEvent(String.format("Rating changed from %d to %d", currentRating, rating));
+    }
+
+    private void validateRating(int rating) {
+        ValidationHelper.validateValueInRange(
+                rating, MIN_RATING_VALUE,
+                MAX_RATING_VALUE, RATING_VALUE_ERROR);
     }
 }
