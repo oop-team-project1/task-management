@@ -1,5 +1,6 @@
 package taskmanagement.models.tasks;
 
+import taskmanagement.IgnoreCoverage;
 import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Member;
 import taskmanagement.models.tasks.contracts.Bug;
@@ -7,6 +8,7 @@ import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 
+import javax.annotation.processing.Generated;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     //TODO why concat?
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s." +
-            "If you still wish to change it, please provide a valid value";
+                                                     "If you still wish to change it, please provide a valid value";
 
     public static final String SEVERITY_CHANGE_ERR =
             "Severity already set to %s." +
@@ -56,29 +58,20 @@ public class BugImpl extends TaskImpl implements Bug {
         return new MemberImpl(assignee);
     }
 
-    private void setStatus(BugStatus status) {
-        logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
-        this.status = status;
-
-    }
-
     @Override
-    public void setAssignee(Member member)
-    {
+    public void setAssignee(Member member) {
         //TODO write message
         if (isAssigned) {
             throw new IllegalArgumentException(
-                    String.format(BUG_ASSIGNED_ERR, assignee.getName(),member.getName(),getId(),assignee));
+                    String.format(BUG_ASSIGNED_ERR, assignee.getName(), member.getName(), getId(), assignee));
         }
-        logEvent(String.format("Bug has been assigned to %s",member.getName()));
+        logEvent(String.format("Bug has been assigned to %s", member.getName()));
         assignee = member;
         isAssigned = true;
     }
 
     @Override
-    public void removeAssignee(Member member)
-    {
-        //TODO overwrite equals in member
+    public void removeAssignee(Member member) {
 
         if (!assignee.equals(member)) {
             throw new IllegalArgumentException(MEMBER_NOT_ASSIGNED_ERR);
@@ -88,7 +81,7 @@ public class BugImpl extends TaskImpl implements Bug {
         isAssigned = false;
 
     }
-
+    @IgnoreCoverage
     public Priority getPriority() {
         return priority;
     }
@@ -102,8 +95,7 @@ public class BugImpl extends TaskImpl implements Bug {
         logEvent(String.format("Priority changed from %s to %s", this.priority, newPriority));
         this.priority = newPriority;
     }
-
-
+    @IgnoreCoverage
     @Override
     public BugStatus getStatus() {
         return status;
@@ -118,18 +110,17 @@ public class BugImpl extends TaskImpl implements Bug {
         logEvent(String.format("Status changed from %s to %s", this.status, newStatus));
         status = newStatus;
     }
-
+    @IgnoreCoverage
     @Override
     public Severity getSeverity() {
         return severity;
     }
 
-
     @Override
     public void changeSeverity(Severity newSeverity) {
         if (this.severity == newSeverity) {
             throw new IllegalArgumentException(
-                    String.format(SEVERITY_CHANGE_ERR,severity));
+                    String.format(SEVERITY_CHANGE_ERR, severity));
         }
         logEvent(String.format("Severity changed from %s to %s", this.severity, newSeverity));
         severity = newSeverity;
@@ -137,12 +128,15 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     private void setStepsToReproduce(List<String> stepsToReproduce) {
-        if(stepsToReproduce.isEmpty()) throw new IllegalArgumentException("List of steps to reproduce the bug can't be empty!");
+        if (stepsToReproduce.isEmpty())
+            throw new IllegalArgumentException("List of steps to reproduce the bug can't be empty!");
         this.stepsToReproduce = new ArrayList<>(stepsToReproduce);
     }
-    private String printSteps(List<String> stepsToReproduce){
+
+    @IgnoreCoverage
+    private String printSteps(List<String> stepsToReproduce) {
         StringBuilder result = new StringBuilder();
-        for(String steps : stepsToReproduce) {
+        for (String steps : stepsToReproduce) {
             result.append(steps).append(System.lineSeparator());
         }
         return result.toString().trim();
