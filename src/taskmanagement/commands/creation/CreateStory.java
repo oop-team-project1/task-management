@@ -87,7 +87,7 @@ public class CreateStory implements Command {
         title = parameters.get(1);
         description = parameters.get(2);
         priority = ParsingHelpers.tryParseEnum(parameters.get(3), Priority.class, INVALID_PRIORITY);
-        size = ParsingHelpers.tryParseEnum(parameters.get(5), Size.class, INVALID_SIZE);
+        size = ParsingHelpers.tryParseEnum(parameters.get(4), Size.class, INVALID_SIZE);
     }
 
 
