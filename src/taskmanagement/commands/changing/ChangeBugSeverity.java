@@ -34,6 +34,6 @@ public class ChangeBugSeverity implements Command {
 
     private void parseParameters(List<String> parameters) {
         bugId = ParsingHelpers.tryParseInteger(parameters.get(0), "bug id");
-        severity = ParsingHelpers.tryParseEnum(parameters.get(1), severity.getDeclaringClass(), ERROR_MESSAGE);
+        severity = ParsingHelpers.tryParseEnum(parameters.get(1), Severity.class, ERROR_MESSAGE);
     }
 }

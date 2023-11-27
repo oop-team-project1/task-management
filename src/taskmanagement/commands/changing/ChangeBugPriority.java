@@ -37,6 +37,6 @@ public class ChangeBugPriority implements Command {
     private void parseParameters(List<String> parameters)
     {
         bugId = ParsingHelpers.tryParseInteger(parameters.get(0), "bug id");
-        priority = ParsingHelpers.tryParseEnum(parameters.get(1), priority.getDeclaringClass(), ERROR_MESSAGE);
+        priority = ParsingHelpers.tryParseEnum(parameters.get(1), Priority.class, ERROR_MESSAGE);
     }
 }
