@@ -74,15 +74,11 @@ public class CommandFactoryImpl implements CommandFactory {
             case UNASSIGNSTORY:
                 return new UnassignStory(repository);
             case LISTALLTASKS:
-                return null;
-            case LISTBUGS:
-                return null;
-            case LISTSTORIES:
-                return null;
-            case LISTFEEDBACKS:
-                return null;
-            case LISTTASKWITHASSIGNEE:
-                return null;
+                return new ListAllTasks(repository);
+            case LISTBUGSWITHASSIGNEE:
+                return new ListBugsWithAssignee(repository);
+            case LISTSTORYWITHASSIGNEE:
+                return new ListStoriesWithAssignee(repository);
             case SORTBUGSBYTITLE:
                 return new SortBugsByTitle(repository);
             case SORTFEEDBACKSBYTITLE:
