@@ -8,13 +8,14 @@ import taskmanagement.models.tasks.enums.Priority;
 import taskmanagement.models.tasks.enums.bug.BugStatus;
 import taskmanagement.models.tasks.enums.bug.Severity;
 
-import javax.annotation.processing.Generated;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
 
     //TODO why concat?
+    //TODO order methods
     public static final String PRIORITY_CHANGE_ERR = "Priority already set to %s." +
                                                      "If you still wish to change it, please provide a valid value";
 
@@ -60,7 +61,6 @@ public class BugImpl extends TaskImpl implements Bug {
 
     @Override
     public void setAssignee(Member member) {
-        //TODO write message
         if (isAssigned) {
             throw new IllegalArgumentException(
                     String.format(BUG_ASSIGNED_ERR, assignee.getName(), member.getName(), getId(), assignee));
@@ -82,6 +82,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     }
 
+    @IgnoreCoverage
     @Override
     public boolean isAssigned() {
         return isAssigned;
