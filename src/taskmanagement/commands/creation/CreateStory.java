@@ -3,31 +3,24 @@ package taskmanagement.commands.creation;
 import taskmanagement.commands.CommandsConstants;
 import taskmanagement.commands.contracts.Command;
 import taskmanagement.core.contracts.TaskManagementRepository;
-import taskmanagement.models.BoardImpl;
-import taskmanagement.models.MemberImpl;
 import taskmanagement.models.contracts.Board;
 import taskmanagement.models.contracts.Member;
-import taskmanagement.models.tasks.contracts.Bug;
 import taskmanagement.models.tasks.contracts.Story;
 import taskmanagement.models.tasks.enums.Priority;
-import taskmanagement.models.tasks.enums.bug.Severity;
 import taskmanagement.models.tasks.enums.story.Size;
-import taskmanagement.models.tasks.enums.story.StoryStatus;
 import taskmanagement.utils.ParsingHelpers;
 import taskmanagement.utils.ValidationHelper;
 
-import java.util.Arrays;
+
 import java.util.List;
 
 public class CreateStory implements Command {
 
-    // TODO make a story with 1 argument less? Create story without member
 
     private static final int MAX_NUMBER_OF_ARGUMENTS = 6;
     private static final int MIN_NUMBER_OF_ARGUMENTS = 5;
     private static final String INVALID_PRIORITY = "Invalid priority type!";
     private static final String INVALID_SIZE = "Invalid size type!";
-    private static final String INVALID_STATUS = "Invalid status type!";
     private static final String INVALID_ARGUMENTS_SIZE = "Invalid number of arguments!";
     private final TaskManagementRepository taskManagementRepository;
 
@@ -60,7 +53,7 @@ public class CreateStory implements Command {
         } else {
             createStory = taskManagementRepository.createNewStoryWithoutMember(title, description, priority, size);
         }
-
+        board.addTask(createStory,"story");
         return String.format(CommandsConstants.STORY_CREATED_MESSAGE, createStory.getId());
     }
 
