@@ -3,27 +3,32 @@ package taskmanagement.utils;
 import java.util.List;
 
 public class ValidationHelper
-    //TODO Change type of exception to InvalidUserInput
+
 {
     public static final String INVALID_NUMBER_OF_ARGUMENTS = "Invalid number of arguments. Expected: %d, Received: %d";
 
-    public static void validateValueInRange(double value, double min, double max, String errorMessage)
-    {
-        if (value < min || value > max)
-        {
+    public static void validateValueInRange(double value, double min, double max, String errorMessage) {
+        if (value < min || value > max) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    public static void validateValueEitherOfTwoNumbers(double value, double min, double max, String errorMessage)
-    {
-        if (value != min && value != max)
-        {
+    public static void validateValueEitherOfTwoNumbers(double value, double min, double max, String errorMessage) {
+        if (value != min && value != max) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    public static void validateStringLength(String stringToValidate, int minLength, int maxLength, String errorMessage) {
+    public static void validateValueEitherOfNumbers(double value, String errorMessage, double... numbers) {
+        for (double number : numbers) {
+            if (value != number) {
+                throw new IllegalArgumentException(errorMessage);
+            }
+        }
+    }
+
+    public static void validateStringLength(String stringToValidate, int minLength, int maxLength, String
+            errorMessage) {
         validateValueInRange(stringToValidate.length(), minLength, maxLength, errorMessage);
     }
 
