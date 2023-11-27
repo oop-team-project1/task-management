@@ -4,4 +4,5 @@ public interface Assignable {
     Member getAssignee();
     void setAssignee(Member member);
     void removeAssignee(Member member);
+    boolean isAssigned();
 }

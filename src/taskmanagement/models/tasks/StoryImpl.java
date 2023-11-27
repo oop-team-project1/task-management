@@ -75,6 +75,11 @@ public class StoryImpl extends TaskImpl implements Story {
 
     }
 
+    @Override
+    public boolean isAssigned() {
+        return isAssigned;
+    }
+
     private void setStatus(StoryStatus status) {
         logEvent(String.format("Status changed from %s to %s", this.getStatus(), status));
         this.status = status;

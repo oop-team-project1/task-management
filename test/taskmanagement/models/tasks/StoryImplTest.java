@@ -12,7 +12,7 @@ import taskmanagement.models.tasks.enums.story.StoryStatus;
 import taskmanagement.utils.TaskBaseConstants;
 
 
-class StoryImplTest {
+public class StoryImplTest {
 
     @Test
     void storyImpl_Should_ImplementStoryInterface() {

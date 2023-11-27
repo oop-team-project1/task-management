@@ -81,6 +81,12 @@ public class BugImpl extends TaskImpl implements Bug {
         isAssigned = false;
 
     }
+
+    @Override
+    public boolean isAssigned() {
+        return isAssigned;
+    }
+
     @IgnoreCoverage
     public Priority getPriority() {
         return priority;
