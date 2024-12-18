@@ -1,4 +1,5 @@
 package taskmanagement.commands;
 
-public class CommandsConstants {
+public class CommandsConstants
+{
 }
