@@ -1,4 +1,6 @@
 package taskmanagement.core.contracts;
 
-public interface Engine {
+public interface Engine
+{
+    void start();
 }

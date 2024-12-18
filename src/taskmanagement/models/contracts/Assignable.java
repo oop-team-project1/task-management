@@ -1,5 +1,8 @@
 package taskmanagement.models.contracts;
 
 public interface Assignable {
-    public Member getAssignee();
+    Member getAssignee();
+    void setAssignee(Member member);
+    void removeAssignee(Member member);
+    boolean isAssigned();
 }
